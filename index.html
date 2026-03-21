@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)file:///C:/Users/Xtrem/Downloads/portfolio.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Developer &amp; Motorsport Enthusiast</title>
+<link href="./index_files/css2" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:    #09090b;
+  --bg2:   #101012;
+  --bg3:   #161618;
+  --bg4:   #1c1c1f;
+  --b:     rgba(255,255,255,0.07);
+  --b2:    rgba(255,255,255,0.13);
+  --t:     #ece8e1;
+  --t2:    #86827c;
+  --t3:    #45433f;
+  --acc:   #e8c84e;
+  --acc2:  #c9a832;
+  --acc-d: rgba(232,200,78,0.10);
+  --red:   #e84040;
+  --blue:  #4a9eff;
+  --r:     12px;
+  --rl:    20px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--t);
+  min-height: 100vh;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CURSOR ───────────────────────────────── */
+#cd {
+  position: fixed; width: 8px; height: 8px;
+  background: var(--acc); border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: width .15s, height .15s;
+}
+#cr {
+  position: fixed; width: 38px; height: 38px;
+  border: 1.5px solid rgba(232,200,78,.45);
+  border-radius: 50%; pointer-events: none;
+  z-index: 9998; transform: translate(-50%,-50%);
+  transition: width .3s, height .3s, border-color .3s;
+}
+body.hovering #cr { width: 54px; height: 54px; border-color: rgba(232,200,78,.85); }
+body.hovering #cd { width: 5px; height: 5px; }
+
+/* ── PROGRESS BAR ─────────────────────────── */
+#pbar {
+  position: fixed; top: 0; left: 0;
+  height: 2px; background: var(--acc);
+  z-index: 1000; width: 0%;
+  transition: width .08s linear;
+}
+
+/* ── NAV ──────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 200; display: flex; align-items: center;
+  padding: 20px 52px;
+  transition: background .3s, backdrop-filter .3s, border-color .3s;
+  border-bottom: 1px solid transparent;
+}
+nav.scrolled {
+  background: rgba(9,9,11,.88);
+  backdrop-filter: blur(14px);
+  border-color: var(--b);
+}
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px; letter-spacing: .1em;
+  color: var(--t); text-decoration: none;
+}
+.nav-logo span { color: var(--acc); }
+.nav-links { display: flex; gap: 36px; margin-left: auto; list-style: none; }
+.nav-links a {
+  font-size: 12px; font-weight: 500;
+  letter-spacing: .06em; color: var(--t2);
+  text-decoration: none;
+  transition: color .2s;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.nav-links a:hover { color: var(--t); }
+
+/* ── HERO ─────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 120px 52px 80px;
+  position: relative; overflow: hidden;
+}
+.hero-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: center;
+  max-width: 1160px; margin: 0 auto; width: 100%;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--acc); margin-bottom: 22px;
+}
+.hero-eyebrow::before {
+  content: ''; display: block;
+  width: 28px; height: 1px; background: var(--acc);
+}
+.hero-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(70px, 8.5vw, 118px);
+  line-height: .88; letter-spacing: .025em;
+  color: var(--t); margin-bottom: 26px;
+}
+.hero-name .hl { color: var(--acc); display: block; }
+.hero-sub {
+  font-size: 15px; color: var(--t2);
+  line-height: 1.75; max-width: 400px; margin-bottom: 38px;
+}
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 24px; border-radius: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px; font-weight: 600;
+  text-decoration: none; cursor: none;
+  border: none; transition: all .2s;
+}
+.btn-acc  { background: var(--acc); color: #09090b; }
+.btn-acc:hover { background: var(--acc2); transform: translateY(-1px); }
+.btn-gh   { background: transparent; color: var(--t2); border: 1px solid var(--b2); }
+.btn-gh:hover { color: var(--t); border-color: rgba(255,255,255,.22); }
+
+.hero-stats {
+  display: flex; gap: 36px; margin-top: 48px;
+  padding-top: 32px; border-top: 1px solid var(--b);
+}
+.stat-n {
+  font-family: 'Space Mono', monospace;
+  font-size: 30px; font-weight: 700;
+  color: var(--t); line-height: 1;
+}
+.stat-n em { color: var(--acc); font-style: normal; }
+.stat-l {
+  font-size: 10px; color: var(--t3); margin-top: 5px;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+
+/* ── MORPHING VISUAL ──────────────────────── */
+.morph-visual {
+  display: flex; align-items: center;
+  justify-content: center; height: 500px;
+  position: relative;
+}
+.morph-wrap {
+  position: relative; width: 360px; height: 360px;
+}
+
+/* outer blob */
+.mb1 {
+  position: absolute; inset: 0;
+  border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%;
+  background: linear-gradient(135deg,
+    rgba(232,200,78,.13) 0%,
+    rgba(232,200,78,.03) 100%);
+  border: 1px solid rgba(232,200,78,.18);
+  animation: morph1 7s ease-in-out infinite;
+  transition: border-radius .9s cubic-bezier(.23,1,.32,1),
+              transform .6s cubic-bezier(.23,1,.32,1),
+              background .5s, border-color .5s;
+}
+.morph-wrap:hover .mb1 {
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  background: linear-gradient(135deg,
+    rgba(232,200,78,.22) 0%,
+    rgba(232,200,78,.07) 100%);
+  border-color: rgba(232,200,78,.4);
+  animation-play-state: paused;
+  transform: scale(1.05);
+}
+@keyframes morph1 {
+  0%,100% { border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%; }
+  20%  { border-radius: 38% 62% 54% 46% / 44% 60% 40% 56%; }
+  40%  { border-radius: 50% 50% 38% 62% / 56% 38% 62% 44%; }
+  60%  { border-radius: 46% 54% 62% 38% / 40% 56% 44% 60%; }
+  80%  { border-radius: 54% 46% 42% 58% / 52% 48% 56% 44%; }
+}
+
+/* inner blob */
+.mb2 {
+  position: absolute; inset: 28px;
+  border-radius: 38% 62% 54% 46% / 44% 60% 40% 56%;
+  background: rgba(232,200,78,.05);
+  animation: morph1 10s ease-in-out infinite reverse;
+  transition: border-radius .9s cubic-bezier(.23,1,.32,1), transform .6s cubic-bezier(.23,1,.32,1);
+}
+.morph-wrap:hover .mb2 {
+  border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+  animation-play-state: paused;
+  transform: scale(.93);
+}
+
+/* ring pulse */
+.mb3 {
+  position: absolute; inset: -20px;
+  border-radius: 50%; border: 1px solid rgba(232,200,78,.06);
+  animation: ring-pulse 4s ease-in-out infinite;
+}
+@keyframes ring-pulse {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50%     { transform: scale(1.04); opacity: .4; }
+}
+
+/* center content */
+.morph-center {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  z-index: 2;
+}
+.morph-initials {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 80px; letter-spacing: .08em;
+  color: var(--t); line-height: 1;
+  transition: color .4s, transform .5s cubic-bezier(.23,1,.32,1);
+}
+.morph-wrap:hover .morph-initials {
+  color: var(--acc); transform: scale(1.06);
+}
+.morph-hint {
+  font-size: 10px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--t3);
+  margin-top: 8px;
+  transition: color .4s;
+}
+.morph-wrap:hover .morph-hint { color: var(--t2); }
+
+/* orbit labels */
+.orb {
+  position: absolute;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--t3); display: flex; align-items: center; gap: 5px;
+  transition: color .3s, transform .3s;
+  white-space: nowrap;
+}
+.orb::before {
+  content: ''; display: block;
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--acc); opacity: .5;
+}
+.morph-wrap:hover .orb { color: var(--t2); }
+.orb.t  { top: -18px; left: 50%; transform: translateX(-50%); }
+.orb.r  { right: -46px; top: 50%; transform: translateY(-50%); }
+.orb.b  { bottom: -18px; left: 50%; transform: translateX(-50%); }
+.orb.l  { left: -46px; top: 50%; transform: translateY(-50%); }
+
+/* hero bg decoration */
+.hbg-r1 {
+  position: absolute; width: 640px; height: 640px;
+  border-radius: 50%; border: 1px solid rgba(232,200,78,.03);
+  right: -80px; top: 50%; transform: translateY(-50%);
+  pointer-events: none;
+}
+.hbg-r2 {
+  position: absolute; width: 420px; height: 420px;
+  border-radius: 50%; border: 1px solid rgba(232,200,78,.055);
+  right: 40px; top: 50%; transform: translateY(-50%);
+  pointer-events: none;
+}
+.hbg-line {
+  position: absolute; left: 0; right: 0; top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232,200,78,.05), transparent);
+  pointer-events: none;
+}
+
+/* ── DIVIDER ──────────────────────────────── */
+.div { width: 100%; height: 1px; background: var(--b); }
+
+/* ── SECTIONS ─────────────────────────────── */
+.section {
+  padding: 100px 52px;
+  max-width: 1160px; margin: 0 auto;
+}
+.sec-label {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 10px; font-weight: 700; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--acc); margin-bottom: 14px;
+}
+.sec-label::before {
+  content: ''; display: block;
+  width: 24px; height: 1px; background: var(--acc);
+}
+.sec-h {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(44px, 5.5vw, 72px);
+  line-height: .92; letter-spacing: .025em;
+  color: var(--t); margin-bottom: 44px;
+}
+
+/* ── ABOUT ────────────────────────────────── */
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start;
+}
+.about-text p {
+  font-size: 14.5px; color: var(--t2);
+  line-height: 1.82; margin-bottom: 18px;
+}
+.about-text p strong { color: var(--t); font-weight: 600; }
+.about-text p em { color: var(--acc); font-style: normal; }
+
+.skills-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.sk {
+  padding: 6px 15px; border-radius: 99px;
+  background: var(--bg3); border: 1px solid var(--b);
+  font-size: 11.5px; font-weight: 500; color: var(--t2);
+  transition: all .2s;
+}
+.sk:hover {
+  border-color: rgba(232,200,78,.3);
+  color: var(--acc); background: var(--acc-d);
+}
+
+/* F1 timing panel */
+.timing-panel {
+  background: var(--bg3); border: 1px solid var(--b);
+  border-radius: var(--rl); padding: 26px;
+  font-family: 'Space Mono', monospace;
+}
+.tp-header {
+  font-size: 9px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--t3);
+  margin-bottom: 18px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--b);
+}
+.tp-row {
+  display: flex; justify-content: space-between;
+  align-items: center; padding: 13px 0;
+  border-bottom: 1px solid var(--b);
+}
+.tp-row:last-child { border-bottom: none; }
+.tp-key { font-size: 10px; color: var(--t3); letter-spacing: .04em; }
+.tp-val { font-size: 12px; color: var(--acc); font-weight: 700; }
+.tp-val.white { color: var(--t); }
+.status-dot {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 12px; color: #4ade80;
+}
+.status-dot::before {
+  content: ''; display: block; width: 7px; height: 7px;
+  border-radius: 50%; background: #4ade80;
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+/* ── MOTORSPORT ───────────────────────────── */
+.moto-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.mc {
+  background: var(--bg3); border: 1px solid var(--b);
+  border-radius: var(--rl); padding: 28px;
+  position: relative; overflow: hidden;
+  transition: border-color .3s, transform .4s cubic-bezier(.23,1,.32,1);
+}
+.mc::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: var(--ca, var(--acc));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .5s cubic-bezier(.23,1,.32,1);
+}
+.mc:hover::before { transform: scaleX(1); }
+.mc:hover { border-color: var(--b2); }
+.mc-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 52px; font-weight: 700;
+  color: rgba(255,255,255,.03); position: absolute;
+  top: 14px; right: 18px; line-height: 1;
+  pointer-events: none; letter-spacing: -.02em;
+}
+.mc-ico {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--acc-d); border: 1px solid rgba(232,200,78,.18);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px; font-size: 17px;
+}
+.mc-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 26px; letter-spacing: .05em;
+  color: var(--t); margin-bottom: 10px;
+}
+.mc-text { font-size: 12.5px; color: var(--t2); line-height: 1.72; }
+.mc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+.mt {
+  font-size: 9px; font-weight: 700; letter-spacing: .09em;
+  text-transform: uppercase; padding: 4px 10px;
+  border-radius: 99px; background: rgba(255,255,255,.035);
+  border: 1px solid var(--b); color: var(--t3);
+}
+
+/* ── PROJECTS ─────────────────────────────── */
+.proj-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.pc {
+  background: var(--bg3); border: 1px solid var(--b);
+  border-radius: var(--rl); padding: 32px;
+  position: relative; overflow: hidden;
+  transition: border-color .3s, transform .4s cubic-bezier(.23,1,.32,1);
+}
+.pc:hover { border-color: var(--b2); }
+.pc-top {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; margin-bottom: 20px;
+}
+.pc-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; color: var(--t3); letter-spacing: .06em;
+}
+.pc-arr {
+  width: 32px; height: 32px; border: 1px solid var(--b);
+  border-radius: 50%; display: flex; align-items: center;
+  justify-content: center; color: var(--t3); font-size: 13px;
+  transition: all .3s;
+}
+.pc:hover .pc-arr {
+  border-color: var(--acc); color: var(--acc);
+  transform: rotate(45deg);
+}
+.pc-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px; letter-spacing: .04em;
+  color: var(--t); margin-bottom: 10px;
+}
+.pc-desc { font-size: 12.5px; color: var(--t2); line-height: 1.72; margin-bottom: 20px; }
+.pc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.pt {
+  font-size: 9px; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; padding: 4px 10px;
+  border-radius: 99px; background: var(--acc-d);
+  border: 1px solid rgba(232,200,78,.2); color: var(--acc);
+}
+
+/* ── CONTACT ──────────────────────────────── */
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.contact-big {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(56px, 7vw, 92px);
+  line-height: .88; color: var(--t); margin-bottom: 20px;
+}
+.contact-big span { color: var(--acc); }
+.contact-sub { font-size: 14px; color: var(--t2); line-height: 1.75; margin-bottom: 32px; }
+
+.c-links { display: flex; flex-direction: column; gap: 10px; }
+.cl {
+  display: flex; align-items: center; gap: 14px;
+  padding: 15px 18px; background: var(--bg3);
+  border: 1px solid var(--b); border-radius: var(--r);
+  text-decoration: none; color: var(--t2);
+  font-size: 12.5px; font-weight: 500;
+  transition: all .2s;
+}
+.cl:hover { border-color: rgba(232,200,78,.28); color: var(--t); }
+.cl-ico { color: var(--acc); font-size: 15px; }
+.cl-arr { margin-left: auto; font-size: 11px; opacity: 0; transition: opacity .2s, transform .2s; }
+.cl:hover .cl-arr { opacity: 1; transform: translateX(3px); }
+
+/* ── FOOTER ───────────────────────────────── */
+footer {
+  border-top: 1px solid var(--b);
+  padding: 28px 52px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 11px; color: var(--t3);
+}
+
+/* ── SCROLL OFFSET (fixes nav overlap) ───── */
+#about, #motorsport, #rig, #projects, #experience, #contact {
+  scroll-margin-top: 80px;
+}
+
+/* ensure nav links are always clickable */
+.nav-links a, .btn, .cl { pointer-events: all; cursor: none; }
+.rv {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.rv.vis { opacity: 1; transform: none; }
+.d1 { transition-delay: .08s; }
+.d2 { transition-delay: .16s; }
+.d3 { transition-delay: .24s; }
+.d4 { transition-delay: .32s; }
+.d5 { transition-delay: .40s; }
+
+/* ── CPU DIE ──────────────────────────────── */
+#cpu-wrap { display:flex; flex-direction:column; align-items:center; }
+
+#cpu-outer {
+  position:relative; width:240px; height:240px;
+  border-radius:10px;
+  box-shadow: 0 0 0 3px #1a1a1e, 0 0 0 4px rgba(255,255,255,.06), 0 24px 60px rgba(0,0,0,.7);
+}
+
+#cpu-die {
+  position:absolute; inset:0; border-radius:8px;
+  background:#0c0c10; overflow:hidden;
+}
+
+#die-grid {
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+
+.die-zone {
+  position:absolute; border-radius:4px;
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.02);
+  overflow:hidden; transition:all .25s;
+}
+.die-zone:hover {
+  border-color:var(--zc, rgba(232,200,78,.6));
+  background:rgba(var(--zcr,232,200,78),.06);
+  box-shadow:0 0 18px rgba(var(--zcr,232,200,78),.22);
+  z-index:3;
+}
+.dz-inner { position:absolute; inset:0; }
+.dz-label {
+  position:absolute; bottom:4px; right:5px;
+  font-family:'Space Mono',monospace; font-size:7px;
+  font-weight:700; letter-spacing:.08em;
+  color:rgba(255,255,255,.2); text-transform:uppercase;
+  pointer-events:none;
+  transition:color .25s;
+}
+.die-zone:hover .dz-label { color:rgba(255,255,255,.6); }
+
+/* cores */
+.core-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:4px; padding:8px; width:100%; height:100%; box-sizing:border-box; }
+.core-cell {
+  background:rgba(232,200,78,.07);
+  border:1px solid rgba(232,200,78,.12);
+  border-radius:2px;
+  transition:background .2s, box-shadow .2s;
+}
+#dz-cores:hover .core-cell {
+  background:rgba(232,200,78,.18);
+  box-shadow:0 0 4px rgba(232,200,78,.25);
+  animation:core-pulse 1.4s ease-in-out infinite;
+}
+@keyframes core-pulse {
+  0%,100%{opacity:1} 50%{opacity:.65}
+}
+#dz-cores:hover .core-cell:nth-child(2) { animation-delay:.1s; }
+#dz-cores:hover .core-cell:nth-child(3) { animation-delay:.2s; }
+#dz-cores:hover .core-cell:nth-child(4) { animation-delay:.3s; }
+#dz-cores:hover .core-cell:nth-child(5) { animation-delay:.05s; }
+#dz-cores:hover .core-cell:nth-child(6) { animation-delay:.15s; }
+#dz-cores:hover .core-cell:nth-child(7) { animation-delay:.25s; }
+#dz-cores:hover .core-cell:nth-child(8) { animation-delay:.35s; }
+
+/* cache lines */
+.cache-line {
+  flex:1; border-radius:1px;
+  background:rgba(74,158,255,.1);
+  border:1px solid rgba(74,158,255,.15);
+  transition:all .25s;
+}
+#dz-cache:hover .cache-line {
+  background:rgba(74,158,255,.28);
+  border-color:rgba(74,158,255,.4);
+  box-shadow:0 0 4px rgba(74,158,255,.2);
+}
+
+/* traces */
+.trace { position:absolute; background:rgba(255,255,255,.04); }
+.th { /* horizontal */ }
+.tv { /* vertical */ }
+#die-traces .trace { transition:background .25s; }
+
+/* pads */
+.pad {
+  width:10px; height:6px; border-radius:1px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+}
+
+/* IHS cap */
+#cpu-ihs {
+  position:absolute; inset:0; border-radius:8px;
+  background:#1c1c20;
+  border:1px solid rgba(255,255,255,.09);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  transition:opacity .1s;
+  z-index:5;
+  pointer-events:none;
+}
+#ihs-texture {
+  position:absolute; inset:0; border-radius:8px;
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.012) 0px, rgba(255,255,255,.012) 1px, transparent 1px, transparent 6px),
+    repeating-linear-gradient(-45deg, rgba(255,255,255,.008) 0px, rgba(255,255,255,.008) 1px, transparent 1px, transparent 6px);
+}
+#ihs-hint {
+  position:absolute; bottom:12px; left:0; right:0;
+  text-align:center;
+  font-size:8px; letter-spacing:.12em; text-transform:uppercase;
+  color:rgba(255,255,255,.18); font-family:'Space Mono',monospace;
+}
+
+/* tooltip */
+#cpu-tooltip {
+  position:absolute; pointer-events:none;
+  background:rgba(9,9,11,.92); border:1px solid rgba(255,255,255,.1);
+  border-radius:8px; padding:8px 12px;
+  font-size:11px; color:#ece8e1; white-space:nowrap;
+  opacity:0; transition:opacity .2s;
+  z-index:20; font-family:'Space Mono',monospace;
+  box-shadow:0 8px 24px rgba(0,0,0,.5);
+  bottom:-48px; left:50%; transform:translateX(-50%);
+}
+#cpu-tooltip.show { opacity:1; }
+
+/* pin grid below chip */
+#cpu-pins {
+  display:grid; grid-template-columns:repeat(20,8px);
+  gap:2px; margin-top:6px; padding:4px;
+  background:rgba(255,255,255,.01);
+  border-radius:4px;
+}
+.cpu-pin {
+  width:6px; height:6px; border-radius:50%;
+  background:rgba(180,140,60,.25);
+  border:1px solid rgba(180,140,60,.35);
+}
+
+/* ── PC RIG ───────────────────────────────── */
+.rig-layout { display: grid; grid-template-columns: 320px 1fr; gap: 60px; align-items: start; }
+.rig-case-outer { position: relative; width: 300px; height: 480px; margin: 0 auto; }
+.rig-body { position: absolute; inset: 0; background: #080809; border: 1.5px solid rgba(255,255,255,0.09); border-radius: 14px; overflow: hidden; }
+.rig-top-panel { position: absolute; top: 0; left: 0; right: 0; height: 18px; background: #111113; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.rig-foot-panel { position: absolute; bottom: 0; left: 0; right: 0; height: 14px; background: #111113; border-top: 1px solid rgba(255,255,255,0.05); }
+.rig-glass { position: absolute; inset: 0; z-index: 10; border-radius: 14px; background: #0c0c0e; border: 1.5px solid rgba(255,255,255,0.1); pointer-events: none; }
+.rgb-strip { position: absolute; border-radius: 2px; animation: rgb-cycle 4s linear infinite; }
+@keyframes rgb-cycle { 0%,100%{background:rgba(232,200,78,.55)} 25%{background:rgba(74,158,255,.55)} 50%{background:rgba(168,85,247,.55)} 75%{background:rgba(232,80,80,.55)} }
+.comp { position: absolute; cursor: none; transition: filter .25s; }
+.comp:hover { z-index: 6; }
+.comp-inner { width: 100%; height: 100%; border-radius: inherit; transition: filter .25s, box-shadow .25s; }
+.comp:hover .comp-inner { filter: brightness(2.4); box-shadow: var(--cg, 0 0 22px rgba(232,200,78,.4)); }
+.fan-circle { border-radius: 50%; border: 1px solid rgba(255,255,255,0.07); background: #111115; position: relative; }
+.fan-circle::before { content:''; position:absolute; inset:5px; border-radius:50%; border:1px dashed rgba(255,255,255,.05); }
+.fan-circle::after { content:''; position:absolute; top:50%; left:50%; width:7px; height:7px; margin:-3.5px 0 0 -3.5px; background:rgba(255,255,255,.09); border-radius:50%; }
+.rig-info { position: sticky; top: 120px; }
+.rig-hint { font-size:12px; color:var(--t3); display:flex; align-items:center; gap:8px; margin-bottom:20px; }
+.rig-hint::before { content:''; display:inline-block; width:16px; height:1px; background:var(--t3); }
+.comp-card { background:var(--bg3); border:1px solid var(--b); border-radius:var(--rl); padding:24px; opacity:0; transform:translateX(10px); transition:opacity .3s,transform .3s; display:none; }
+.comp-card.vis { display:block; opacity:1; transform:none; }
+.comp-badge { font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:4px 10px; border-radius:99px; background:var(--acc-d); border:1px solid rgba(232,200,78,.2); color:var(--acc); display:inline-block; margin-bottom:12px; }
+.comp-name { font-family:'Bebas Neue',sans-serif; font-size:34px; letter-spacing:.04em; color:var(--t); line-height:1; margin-bottom:6px; }
+.comp-spec { font-family:'Space Mono',monospace; font-size:11px; color:var(--acc); margin-bottom:14px; line-height:1.5; }
+.comp-desc-text { font-size:13px; color:var(--t2); line-height:1.75; }
+.spec-rows { margin-top:14px; }
+.spec-row { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--b); font-size:11.5px; }
+.spec-row:last-child { border-bottom:none; }
+.spec-key { color:var(--t3); }
+.spec-val { color:var(--t); font-family:'Space Mono',monospace; font-size:10px; }
+.all-specs { display:flex; flex-direction:column; gap:7px; }
+.spec-item { display:flex; justify-content:space-between; padding:9px 14px; background:var(--bg3); border:1px solid var(--b); border-radius:var(--r); font-size:12px; }
+.spec-item-key { color:var(--t2); }
+.spec-item-val { color:var(--acc); font-family:'Space Mono',monospace; font-size:10px; }
+
+/* ── RESPONSIVE ───────────────────────────── */
+@media (max-width: 920px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  #hero { padding: 100px 24px 60px; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .morph-visual { display: none; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .moto-grid { grid-template-columns: 1fr; }
+  .proj-grid { grid-template-columns: 1fr; }
+  .rig-layout { grid-template-columns: 1fr; }
+  .section { padding: 64px 24px; }
+  footer { padding: 20px 24px; flex-direction: column; gap: 6px; text-align: center; }
+}
+</style>
+<link rel="stylesheet" href="./index_files/css2(1)"></head>
+<body class="">
+
+<div id="pbar"></div>
+<div id="cd" style="left: 574px; top: 560px;"></div>
+<div id="cr" style="left: 574px; top: 560px;"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="file:///C:/Users/Xtrem/Downloads/portfolio.html#hero" class="nav-logo">Dev<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="file:///C:/Users/Xtrem/Downloads/portfolio.html#about" onclick="navTo(&#39;about&#39;);return false;">About</a></li>
+    <li><a href="file:///C:/Users/Xtrem/Downloads/portfolio.html#motorsport" onclick="navTo(&#39;motorsport&#39;);return false;">Motorsport</a></li>
+    <li><a href="file:///C:/Users/Xtrem/Downloads/portfolio.html#rig" onclick="navTo(&#39;rig&#39;);return false;">My rig</a></li>
+    <li><a href="file:///C:/Users/Xtrem/Downloads/portfolio.html#projects" onclick="navTo(&#39;projects&#39;);return false;">Projects</a></li>
+    <li><a href="file:///C:/Users/Xtrem/Downloads/portfolio.html#experience" onclick="navTo(&#39;experience&#39;);return false;">Experience</a></li>
+    <li><a href="file:///C:/Users/Xtrem/Downloads/portfolio.html#contact" onclick="navTo(&#39;contact&#39;);return false;">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero" style="padding:0;max-width:100%">
+  <div style="min-height:100vh;display:flex;align-items:center;padding:120px 52px 80px;max-width:1160px;margin:0 auto;position:relative;width:100%">
+    <div class="hbg-r1"></div>
+    <div class="hbg-r2"></div>
+    <div class="hbg-line"></div>
+
+    <div class="hero-inner">
+      <!-- Text side -->
+      <div class="hero-text">
+        <div class="hero-eyebrow">CS Student &amp; Developer</div>
+        <h1 class="hero-name">
+          Mustafa<br>
+          <span class="hl">Khan</span>
+        </h1>
+        <p class="hero-sub">
+          Computer Science student at Sacramento State with hands-on experience in QA, hardware troubleshooting, and web development. I build things that work — and obsess over the details that make them work <em style="font-style:normal;color:var(--acc)">really</em> well.
+        </p>
+        <div class="hero-btns">
+          <a href="file:///C:/Users/Xtrem/Downloads/portfolio.html#projects" onclick="navTo(&#39;projects&#39;);return false;" class="btn btn-acc">See my work</a>
+          <a href="file:///C:/Users/Xtrem/Downloads/portfolio.html#contact" onclick="navTo(&#39;contact&#39;);return false;" class="btn btn-gh">Get in touch</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-n">CS<em>.</em></div>
+            <div class="stat-l">CSUS student</div>
+          </div>
+          <div>
+            <div class="stat-n">2<em>+</em></div>
+            <div class="stat-l">Projects shipped</div>
+          </div>
+          <div>
+            <div class="stat-n">F1<em>.</em></div>
+            <div class="stat-l">Obsessed with</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CPU Die visual -->
+      <div class="morph-visual">
+        <div id="cpu-wrap">
+
+          <!-- Label above -->
+          <div style="text-align:center;margin-bottom:14px">
+            <span style="font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t3)">Intel / AMD · Desktop CPU</span>
+          </div>
+
+          <!-- Chip outer shell -->
+          <div id="cpu-outer">
+
+            <!-- Die (revealed on hover) -->
+            <div id="cpu-die">
+
+              <!-- Die background grid -->
+              <div id="die-grid"></div>
+
+              <!-- CPU CORES block -->
+              <div class="die-zone" id="dz-cores" style="top: 14px; left: 14px; width: 148px; height: 108px; --zc: rgba(232,200,78,.55); --zcr: 232,200,78;" data-label="CPU cores" data-color="#e8c84e" data-detail="Ryzen 7 5700X · 8C/16T · Zen 3">
+                <div class="dz-inner">
+                  <div class="core-grid" id="core-grid"><div class="core-cell"></div><div class="core-cell"></div><div class="core-cell"></div><div class="core-cell"></div><div class="core-cell"></div><div class="core-cell"></div><div class="core-cell"></div><div class="core-cell"></div></div>
+                </div>
+                <div class="dz-label">Cores</div>
+              </div>
+
+              <!-- L3 CACHE band -->
+              <div class="die-zone" id="dz-cache" style="top: 14px; right: 14px; width: 64px; height: 108px; --zc: rgba(74,158,255,.55); --zcr: 74,158,255;" data-label="L3 cache" data-color="#4a9eff" data-detail="32MB shared · Zen 3 Infinity Cache">
+                <div class="dz-inner" style="display:flex;flex-direction:column;gap:3px;padding:6px 4px">
+                  <div class="cache-line"></div><div class="cache-line"></div>
+                  <div class="cache-line"></div><div class="cache-line"></div>
+                  <div class="cache-line"></div><div class="cache-line"></div>
+                  <div class="cache-line"></div><div class="cache-line"></div>
+                </div>
+                <div class="dz-label">L3$</div>
+              </div>
+
+              <!-- MEMORY CONTROLLER -->
+              <div class="die-zone" id="dz-mem" style="bottom: 56px; left: 14px; width: 88px; height: 52px; --zc: rgba(192,132,252,.55); --zcr: 192,132,252;" data-label="Memory controller" data-color="#c084fc" data-detail="DDR4 · dual-channel · AM4">
+                <div class="dz-inner">
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:5px">
+                    <div style="height:8px;border-radius:2px;background:rgba(192,132,252,.18)"></div>
+                    <div style="height:8px;border-radius:2px;background:rgba(192,132,252,.18)"></div>
+                    <div style="height:8px;border-radius:2px;background:rgba(192,132,252,.12)"></div>
+                    <div style="height:8px;border-radius:2px;background:rgba(192,132,252,.12)"></div>
+                  </div>
+                </div>
+                <div class="dz-label">IMC</div>
+              </div>
+
+              <!-- PCIe / I/O -->
+              <div class="die-zone" id="dz-io" style="bottom: 56px; left: 112px; width: 82px; height: 52px; --zc: rgba(251,146,60,.55); --zcr: 251,146,60;" data-label="PCIe &amp; I/O" data-color="#fb923c" data-detail="PCIe 4.0 · B550-F chipset">
+                <div class="dz-inner">
+                  <div style="display:flex;flex-direction:column;gap:2px;padding:5px 6px">
+                    <div style="height:5px;border-radius:1px;background:rgba(251,146,60,.2)"></div>
+                    <div style="height:5px;border-radius:1px;background:rgba(251,146,60,.15)"></div>
+                    <div style="height:5px;border-radius:1px;background:rgba(251,146,60,.1)"></div>
+                  </div>
+                </div>
+                <div class="dz-label">I/O</div>
+              </div>
+
+              <!-- BUS TRACES -->
+              <div id="die-traces">
+                <div class="trace th" style="bottom:108px;left:44px;width:1px;height:32px"></div>
+                <div class="trace th" style="bottom:108px;left:88px;width:1px;height:32px"></div>
+                <div class="trace th" style="bottom:108px;left:132px;width:1px;height:32px"></div>
+                <div class="trace tv" style="bottom:56px;left:14px;width:180px;height:1px"></div>
+                <div class="trace th" style="bottom:14px;left:42px;width:1px;height:42px"></div>
+                <div class="trace th" style="bottom:14px;left:110px;width:1px;height:42px"></div>
+                <div class="trace th" style="bottom:14px;left:152px;width:1px;height:42px"></div>
+              </div>
+
+              <!-- PADS bottom row -->
+              <div style="position:absolute;bottom:6px;left:14px;right:14px;display:flex;justify-content:space-between">
+                <div class="pad"></div><div class="pad"></div><div class="pad"></div>
+                <div class="pad"></div><div class="pad"></div><div class="pad"></div>
+                <div class="pad"></div><div class="pad"></div><div class="pad"></div>
+              </div>
+
+            </div><!-- /cpu-die -->
+
+            <!-- IHS cap (cursor burns through this) -->
+            <div id="cpu-ihs">
+              <div id="ihs-texture"></div>
+              <div id="ihs-logo">
+                <div style="font-family:&#39;Space Mono&#39;,monospace;font-size:13px;font-weight:700;color:rgba(255,255,255,.25);letter-spacing:.06em">MK</div>
+                <div style="font-size:8px;color:rgba(255,255,255,.12);letter-spacing:.1em;text-transform:uppercase;margin-top:3px">CS · 2020</div>
+              </div>
+              <div id="ihs-hint">hover to decap</div>
+            </div>
+
+          </div><!-- /cpu-outer -->
+
+          <!-- Hovered zone tooltip -->
+          <div id="cpu-tooltip"></div>
+
+          <!-- Pin grid below -->
+          <div id="cpu-pins"><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div><div class="cpu-pin"></div></div>
+
+          <!-- Label below -->
+          <div style="text-align:center;margin-top:14px">
+            <span style="font-size:9px;color:var(--t3);letter-spacing:.08em;font-family:&#39;Space Mono&#39;,monospace">LGA · AM5 socket</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ABOUT -->
+<div class="section" id="about">
+  <div class="rv">
+    <div class="sec-label">Background</div>
+    <h2 class="sec-h">A bit about<br>who I am</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p class="rv d1">
+        I'm <strong>Mustafa Khan</strong> — a Computer Science student at <em>Sacramento State</em> with a genuine obsession for how things work, whether that's a piece of software or a turbocharged engine. I got into tech through PC building, which taught me more about troubleshooting and systems thinking than any classroom.
+      </p>
+      <p class="rv d2">
+        My experience spans <strong>web development, QA, and hands-on hardware</strong>. Most recently I worked as a VR Technical Support specialist at Fever's Titanic VR experience in Sacramento — running daily QA checklists on headsets and workstations, doing live root-cause analysis on malfunctions, and keeping everything running smoothly under pressure in front of a live audience.
+      </p>
+      <p class="rv d3">
+        I care about precision in everything I build. That same attention to detail that makes me good at <em>QA and debugging</em> is what drives me toward motorsport — where fractions of a second and marginal gains are everything. Currently building out my dev portfolio with AI-powered tools and theme design while finishing my degree.
+      </p>
+      <div class="skills-wrap rv d4">
+        <span class="sk">Java</span>
+        <span class="sk">HTML / CSS</span>
+        <span class="sk">JavaScript</span>
+        <span class="sk">OOP</span>
+        <span class="sk">UI/UX Wireframing</span>
+        <span class="sk">QA Testing</span>
+        <span class="sk">Root Cause Analysis</span>
+        <span class="sk">PC Building</span>
+        <span class="sk">VR Systems</span>
+        <span class="sk">Git</span>
+        <span class="sk">Data Structures</span>
+        <span class="sk">Networking</span>
+      </div>
+    </div>
+
+    <!-- F1 timing panel -->
+    <div class="rv d2">
+      <div class="timing-panel">
+        <div class="tp-header">mustafa.khan · live session</div>
+        <div class="tp-row">
+          <span class="tp-key">S1 · Education</span>
+          <span class="tp-val">CSUS — CS Degree</span>
+        </div>
+        <div class="tp-row">
+          <span class="tp-key">S2 · Current role</span>
+          <span class="tp-val">VR Tech · Fever</span>
+        </div>
+        <div class="tp-row">
+          <span class="tp-key">S3 · Favourite F1 driver</span>
+          <span class="tp-val">Lando Norris</span>
+        </div>
+        <div class="tp-row">
+          <span class="tp-key">S4 · Dream JDM</span>
+          <span class="tp-val">Nissan GT-R R34</span>
+        </div>
+        <div class="tp-row">
+          <span class="tp-key">FL · Current project</span>
+          <span class="tp-val white">AI Theme Studio</span>
+        </div>
+        <div class="tp-row">
+          <span class="tp-key">Status</span>
+          <span class="status-dot">Open to opportunities</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="div"></div>
+
+<!-- MOTORSPORT -->
+<div class="section" id="motorsport">
+  <div class="rv">
+    <div class="sec-label">Hobbies</div>
+    <h2 class="sec-h">Life outside<br>the terminal</h2>
+  </div>
+  <div class="moto-grid">
+
+    <div class="mc rv d1" style="--ca:#e8c84e">
+      <div class="mc-num">01</div>
+      <div class="mc-ico" style="font-size:20px">◎</div>
+      <div class="mc-title">Formula 1</div>
+      <div class="mc-text">
+        From tyre deg to DRS strategy — I follow every detail of the championship. There's something about 20 drivers pushing 1000hp machines to the absolute limit that never gets old. Currently fully committed to seeing <strong style="color:var(--acc)">Lando</strong> bring it home for McLaren.
+      </div>
+      <div class="mc-tags">
+        <span class="mt">McLaren</span>
+        <span class="mt">Race strategy</span>
+        <span class="mt">Qualifying</span>
+        <span class="mt">Tyre deg</span>
+      </div>
+    </div>
+
+    <div class="mc rv d2" style="--ca:#e84040">
+      <div class="mc-num">02</div>
+      <div class="mc-ico" style="font-size:20px">⬡</div>
+      <div class="mc-title">JDM Culture</div>
+      <div class="mc-text">
+        Japanese domestic market cars are engineering poetry. The RB26 in a Skyline GT-R, the 2JZ in a Supra, the naturally-aspirated NSX — everything about them is intentional. The culture around them is just as deep as the engineering. True icons.
+      </div>
+      <div class="mc-tags">
+        <span class="mt">Nissan Skyline</span>
+        <span class="mt">Toyota Supra</span>
+        <span class="mt">Honda NSX</span>
+        <span class="mt">RB26</span>
+      </div>
+    </div>
+
+    <div class="mc rv d3" style="--ca:#4a9eff">
+      <div class="mc-num">03</div>
+      <div class="mc-ico" style="font-size:20px">◈</div>
+      <div class="mc-title">German engineering</div>
+      <div class="mc-text">
+        BMW M, Porsche, AMG — German manufacturers have a philosophy of precision I genuinely admire. A flat-six 911 GT3 or a hand-built AMG V8 isn't just a car, it's a statement of intent. That obsession with getting details right carries into everything I build.
+      </div>
+      <div class="mc-tags">
+        <span class="mt">BMW M</span>
+        <span class="mt">Porsche 911</span>
+        <span class="mt">Mercedes AMG</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="div"></div>
+
+<!-- MY RIG -->
+<div class="section" id="rig">
+  <div class="rv">
+    <div class="sec-label">Hardware</div>
+    <h2 class="sec-h">My rig<br>since 2020</h2>
+  </div>
+  <div class="rig-layout">
+
+    <!-- PC Case illustration -->
+    <div>
+      <div class="rig-case-outer" id="rig-case">
+        <div class="rig-body">
+          <div class="rig-top-panel"></div>
+          <div class="rig-foot-panel"></div>
+
+          <!-- Top RGB strip -->
+          <div class="rgb-strip" style="top:20px;left:32px;right:32px;height:2px;opacity:.75"></div>
+
+          <!-- TOP EXHAUST FANS (2x 120mm) -->
+          <div class="comp" style="--cg:0 0 18px rgba(180,200,255,.5);top:28px;left:54px;width:54px;height:54px" data-n="Top exhaust fans" data-b="Cooling" data-s="2× 120mm" data-desc="Two 120mm fans exhausting hot air out the top of the case. Combined with front intakes, they create a clean front-to-top airflow path that pulls heat away from the CPU and GPU." data-k1="Size" data-v1="120mm" data-k2="Type" data-v2="Exhaust" data-k3="Position" data-v3="Top mount">
+            <div class="comp-inner fan-circle"></div>
+          </div>
+          <div class="comp" style="--cg:0 0 18px rgba(180,200,255,.5);top:28px;left:122px;width:54px;height:54px" data-n="Top exhaust fans" data-b="Cooling" data-s="2× 120mm" data-desc="Two 120mm fans exhausting hot air out the top of the case. Combined with front intakes, they create a clean front-to-top airflow path that pulls heat away from the CPU and GPU." data-k1="Size" data-v1="120mm" data-k2="Type" data-v2="Exhaust" data-k3="Position" data-v3="Top mount">
+            <div class="comp-inner fan-circle"></div>
+          </div>
+
+          <!-- MOTHERBOARD (background plate) -->
+          <div class="comp" style="--cg:0 0 16px rgba(74,158,255,.35);top:98px;left:50px;width:188px;height:148px;border-radius:7px" data-n="Motherboard" data-b="Foundation" data-s="ASUS ROG Strix B550-F · AM4" data-desc="The ROG Strix B550-F is a solid mid-range board — PCIe 4.0 support, strong VRMs for the 5700X, and plenty of USB ports. The AM4 socket means it was compatible with Ryzen from day one." data-k1="Socket" data-v1="AM4" data-k2="PCIe" data-v2="Gen 4.0" data-k3="Form" data-v3="ATX">
+            <div class="comp-inner" style="background:#0e0e12;border:1px solid rgba(255,255,255,0.07);border-radius:7px"></div>
+          </div>
+
+          <!-- CPU COOLER (fin stack) -->
+          <div class="comp" style="--cg:0 0 22px rgba(232,200,78,.4);top:106px;left:65px;width:84px;height:92px;border-radius:5px" data-n="CPU cooler" data-b="Thermal" data-s="Cooler Master Hyper 212" data-desc="The Hyper 212 is one of the most proven air coolers ever made — reliable, quiet, and more than sufficient for the 65W 5700X. Four heat pipes pull heat off the CPU die and through the dense aluminium fin stack." data-k1="Fan" data-v1="120mm PWM" data-k2="TDP rated" data-v2="150W+" data-k3="Height" data-v3="158mm">
+            <div class="comp-inner" style="background:#181820;border:1px solid rgba(255,255,255,0.1);border-radius:5px;display:flex;flex-direction:column;gap:2px;padding:5px 4px;box-sizing:border-box">
+              <div style="height:6px;background:rgba(255,255,255,0.06);border-radius:1px"></div>
+              <div style="height:6px;background:rgba(255,255,255,0.06);border-radius:1px"></div>
+              <div style="height:6px;background:rgba(255,255,255,0.06);border-radius:1px"></div>
+              <div style="height:6px;background:rgba(255,255,255,0.06);border-radius:1px"></div>
+              <div style="height:6px;background:rgba(255,255,255,0.06);border-radius:1px"></div>
+              <div style="height:6px;background:rgba(255,255,255,0.06);border-radius:1px"></div>
+              <div style="height:6px;background:rgba(255,255,255,0.06);border-radius:1px"></div>
+              <div style="height:6px;background:rgba(255,255,255,0.06);border-radius:1px"></div>
+            </div>
+          </div>
+
+          <!-- CPU (die under cooler) -->
+          <div class="comp" style="--cg:0 0 24px rgba(232,200,78,.6);top:136px;left:87px;width:40px;height:40px;border-radius:4px;z-index:3" data-n="CPU" data-b="Processor" data-s="AMD Ryzen 7 5700X · Zen 3" data-desc="The brain of the build. The 5700X is an 8-core Zen 3 chip — fantastic price-to-performance, great for gaming and multitasking. Runs cool enough that the Hyper 212 handles it comfortably without throttling." data-k1="Cores/Threads" data-v1="8C / 16T" data-k2="Boost clock" data-v2="4.6GHz" data-k3="TDP" data-v3="65W">
+            <div class="comp-inner" style="background:#2a2a30;border:1px solid rgba(232,200,78,0.22);border-radius:4px"></div>
+          </div>
+
+          <!-- RAM × 2 -->
+          <div class="comp" style="--cg:0 0 18px rgba(168,85,247,.55);top:104px;left:164px;width:15px;height:108px;border-radius:3px" data-n="RAM" data-b="Memory" data-s="DDR4 · Dual channel" data-desc="Two RAM sticks running in dual-channel mode for double the memory bandwidth. More RAM means more headroom for demanding games, video editing, and heavy multitasking." data-k1="Capacity" data-v1="16–32GB" data-k2="Speed" data-v2="3200MHz" data-k3="Config" data-v3="2× DIMM">
+            <div class="comp-inner" style="background:#1a1025;border:1px solid rgba(168,85,247,0.22);border-radius:3px"></div>
+          </div>
+          <div class="comp" style="--cg:0 0 18px rgba(168,85,247,.55);top:104px;left:184px;width:15px;height:108px;border-radius:3px" data-n="RAM" data-b="Memory" data-s="DDR4 · Dual channel" data-desc="Two RAM sticks running in dual-channel mode for double the memory bandwidth." data-k1="Capacity" data-v1="16–32GB" data-k2="Speed" data-v2="3200MHz" data-k3="Config" data-v3="2× DIMM">
+            <div class="comp-inner" style="background:#1a1025;border:1px solid rgba(168,85,247,0.22);border-radius:3px"></div>
+          </div>
+          <!-- RAM RGB -->
+          <div class="rgb-strip" style="top:105px;left:165px;width:13px;height:3px;opacity:.85"></div>
+          <div class="rgb-strip" style="top:105px;left:185px;width:13px;height:3px;opacity:.85;animation-delay:-1.3s"></div>
+
+          <!-- M.2 NVMe SSD -->
+          <div class="comp" style="--cg:0 0 14px rgba(74,158,255,.45);top:222px;left:65px;width:66px;height:13px;border-radius:2px" data-n="M.2 NVMe SSD" data-b="Storage" data-s="2TB PCIe NVMe SSD" data-desc="2TB of NVMe storage — enough for a full game library without constantly uninstalling things. Mounted directly on the motherboard with no cables. Loads games and files several times faster than any SATA drive." data-k1="Capacity" data-v1="2TB" data-k2="Interface" data-v2="PCIe Gen 3/4" data-k3="Read" data-v3="~3500MB/s">
+            <div class="comp-inner" style="background:#0d1520;border:1px solid rgba(74,158,255,0.22);border-radius:2px"></div>
+          </div>
+
+          <!-- GPU (large, 2-slot) -->
+          <div class="comp" style="--cg:0 0 28px rgba(74,158,255,.45);top:264px;left:34px;width:214px;height:84px;border-radius:8px" data-n="Graphics card" data-b="GPU" data-s="AMD Radeon RX 7700 XT" data-desc="The RX 7700 XT is a RDNA 3 card — excellent 1080p and 1440p gaming performance. 12GB of GDDR6 gives headroom for high-res textures. Pairs great with the 5700X since both are AMD — no driver conflicts." data-k1="VRAM" data-v1="12GB GDDR6" data-k2="TDP" data-v2="245W" data-k3="Slot" data-v3="PCIe x16">
+            <div class="comp-inner" style="background:#0a0a10;border:1px solid rgba(74,158,255,0.14);border-radius:8px;display:flex;align-items:center;justify-content:space-around;padding:6px">
+              <div style="width:54px;height:54px;border-radius:50%;border:1px solid rgba(255,255,255,0.07);background:#0e0e14;position:relative;flex-shrink:0">
+                <div style="position:absolute;inset:5px;border-radius:50%;border:1px dashed rgba(255,255,255,0.05)"></div>
+                <div style="position:absolute;top:50%;left:50%;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;background:rgba(74,158,255,.15);border-radius:50%"></div>
+              </div>
+              <div style="width:54px;height:54px;border-radius:50%;border:1px solid rgba(255,255,255,0.07);background:#0e0e14;position:relative;flex-shrink:0">
+                <div style="position:absolute;inset:5px;border-radius:50%;border:1px dashed rgba(255,255,255,0.05)"></div>
+                <div style="position:absolute;top:50%;left:50%;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;background:rgba(74,158,255,.15);border-radius:50%"></div>
+              </div>
+              <div style="flex:1;margin-left:10px;display:flex;flex-direction:column;gap:4px">
+                <div style="height:2px;background:rgba(255,255,255,0.04);border-radius:1px"></div>
+                <div style="height:2px;background:rgba(255,255,255,0.04);border-radius:1px"></div>
+                <div style="height:2px;background:rgba(74,158,255,0.12);border-radius:1px"></div>
+              </div>
+            </div>
+          </div>
+          <!-- GPU RGB strip -->
+          <div class="rgb-strip" style="top:265px;left:35px;width:211px;height:2px;opacity:.65;animation-delay:-2s"></div>
+
+          <!-- FRONT INTAKE FANS (2× 120mm) -->
+          <div class="comp" style="--cg:0 0 15px rgba(180,200,255,.4);top:178px;left:8px;width:34px;height:34px" data-n="Front intake fans" data-b="Airflow" data-s="2× 120mm intake" data-desc="Front-mounted intake fans pull cool fresh air in through the front mesh panel. They work with the top exhaust fans to push air over the motherboard, RAM, GPU, and out the top." data-k1="Size" data-v1="120mm" data-k2="Type" data-v2="Intake" data-k3="Position" data-v3="Front panel">
+            <div class="comp-inner fan-circle"></div>
+          </div>
+          <div class="comp" style="--cg:0 0 15px rgba(180,200,255,.4);top:226px;left:8px;width:34px;height:34px" data-n="Front intake fans" data-b="Airflow" data-s="2× 120mm intake" data-desc="Front-mounted intake fans pull cool fresh air in through the front mesh panel." data-k1="Size" data-v1="120mm" data-k2="Type" data-v2="Intake" data-k3="Position" data-v3="Front panel">
+            <div class="comp-inner fan-circle"></div>
+          </div>
+
+          <!-- PSU (bottom mount) -->
+          <div class="comp" style="--cg:0 0 14px rgba(78,200,100,.35);top:384px;left:34px;width:178px;height:66px;border-radius:7px" data-n="Power supply" data-b="PSU" data-s="MSI 850W · 80+ Gold" data-desc="850W gives plenty of headroom for the 5700X and RX 7700 XT combined load (~350W), plus room to upgrade later. 80+ Gold means efficient power delivery with less wasted heat inside the case." data-k1="Wattage" data-v1="850W" data-k2="Rating" data-v2="80+ Gold" data-k3="Brand" data-v3="MSI">
+            <div class="comp-inner" style="background:#0c0e0c;border:1px solid rgba(255,255,255,0.07);border-radius:7px;display:flex;align-items:center;padding:8px 14px;gap:10px">
+              <div style="width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,0.07);background:#111313;flex-shrink:0;position:relative">
+                <div style="position:absolute;inset:4px;border-radius:50%;border:1px dashed rgba(255,255,255,0.04)"></div>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:3px">
+                <div style="height:2px;background:rgba(255,255,255,0.05);border-radius:1px"></div>
+                <div style="height:2px;background:rgba(255,255,255,0.05);border-radius:1px"></div>
+                <div style="height:2px;background:rgba(78,200,100,0.12);border-radius:1px"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cable traces (decorative) -->
+          <div style="position:absolute;top:180px;left:150px;width:1px;height:95px;background:rgba(255,255,255,0.025)"></div>
+          <div style="position:absolute;top:200px;left:162px;width:1px;height:75px;background:rgba(255,255,255,0.025)"></div>
+          <div style="position:absolute;top:357px;left:78px;right:52px;height:1px;background:rgba(255,255,255,0.025)"></div>
+        </div>
+
+        <!-- GLASS PANEL — cursor spotlight dissolves it -->
+        <div class="rig-glass" id="rig-glass">
+          <div style="position:absolute;top:0;left:16%;width:22%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.018),transparent)"></div>
+          <div style="position:absolute;bottom:22px;left:0;right:0;text-align:center;font-family:&#39;Space Mono&#39;,monospace;font-size:9px;color:rgba(255,255,255,.12);letter-spacing:.14em;text-transform:uppercase">hover to reveal</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:14px;font-size:11px;color:var(--t3);letter-spacing:.05em">move cursor over each component</div>
+    </div>
+
+    <!-- Info panel -->
+    <div class="rig-info">
+      <div class="rig-hint">Hover a component to inspect it</div>
+
+      <!-- Full spec sheet (default state) -->
+      <div id="rig-default">
+        <div style="font-family:&#39;Bebas Neue&#39;,sans-serif;font-size:28px;letter-spacing:.04em;color:var(--t);margin-bottom:16px">Full spec sheet</div>
+        <div class="all-specs">
+          <div class="spec-item"><span class="spec-item-key">CPU</span><span class="spec-item-val" id="si-cpu">AMD Ryzen 7 5700X</span></div>
+          <div class="spec-item"><span class="spec-item-key">CPU cooler</span><span class="spec-item-val" id="si-cooler">Hyper 212 · Air tower</span></div>
+          <div class="spec-item"><span class="spec-item-key">GPU</span><span class="spec-item-val" id="si-gpu">AMD RX 7700 XT</span></div>
+          <div class="spec-item"><span class="spec-item-key">RAM</span><span class="spec-item-val" id="si-ram">16–32GB DDR4</span></div>
+          <div class="spec-item"><span class="spec-item-key">Motherboard</span><span class="spec-item-val" id="si-mobo">ASUS ROG Strix B550-F</span></div>
+          <div class="spec-item"><span class="spec-item-key">Storage</span><span class="spec-item-val" id="si-storage">2TB NVMe SSD</span></div>
+          <div class="spec-item"><span class="spec-item-key">PSU</span><span class="spec-item-val" id="si-psu">MSI 850W 80+ Gold</span></div>
+          <div class="spec-item"><span class="spec-item-key">Case</span><span class="spec-item-val" id="si-case">Darkflash Mid-tower ATX</span></div>
+          <div class="spec-item"><span class="spec-item-key">Building since</span><span class="spec-item-val" style="color:var(--acc)">2020 — ongoing</span></div>
+        </div>
+      </div>
+
+      <!-- Component detail (appears on hover) -->
+      <div class="comp-card" id="comp-card">
+        <span class="comp-badge" id="cc-badge">GPU</span>
+        <div class="comp-name" id="cc-name">Graphics card</div>
+        <div class="comp-spec" id="cc-spec">NVIDIA · 8GB GDDR6</div>
+        <div class="comp-desc-text" id="cc-desc">Description.</div>
+        <div class="spec-rows" id="cc-rows"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="div"></div>
+
+<!-- PROJECTS -->
+<div class="section" id="projects">
+  <div class="rv">
+    <div class="sec-label">Work</div>
+    <h2 class="sec-h">Things I've<br>built</h2>
+  </div>
+  <div class="proj-grid">
+
+    <div class="pc rv d1">
+      <div class="pc-top">
+        <span class="pc-num">01 / 05</span>
+        <div class="pc-arr">↗</div>
+      </div>
+      <div class="pc-title">AI Theme Studio</div>
+      <div class="pc-desc">A complete workflow tool for generating, previewing, and packaging sellable website themes using the Anthropic API. Features live browser preview, auto-generated marketplace listings, and income tracking. Built entirely in HTML/CSS/JS.</div>
+      <div class="pc-tags">
+        <span class="pt">HTML / CSS</span>
+        <span class="pt">Anthropic API</span>
+        <span class="pt">Vanilla JS</span>
+      </div>
+    </div>
+
+    <div class="pc rv d2">
+      <div class="pc-top">
+        <span class="pc-num">02 / 05</span>
+        <div class="pc-arr">↗</div>
+      </div>
+      <div class="pc-title">Educational Quiz Platform</div>
+      <div class="pc-desc">End-to-end design and development of an interactive quiz interface. Led wireframing, converted visual specs into functional code, and performed iterative QA testing across all user flows — from Sign In through to the Dashboard — fixing navigation bugs along the way.</div>
+      <div class="pc-tags">
+        <span class="pt">HTML / CSS</span>
+        <span class="pt">UI/UX Design</span>
+        <span class="pt">QA Testing</span>
+        <span class="pt">Class Diagrams</span>
+      </div>
+    </div>
+
+    <div class="pc rv d3">
+      <div class="pc-top">
+        <span class="pc-num">03 / 05</span>
+        <div class="pc-arr">↗</div>
+      </div>
+      <div class="pc-title">Personal PC build</div>
+      <div class="pc-desc">An ongoing project since 2020 — continuously upgraded, benchmarked, and refined over the years. Started as a learning exercise in hardware, grew into a deep understanding of thermals, power delivery, compatibility, and system-level performance tuning. Every component chosen intentionally.</div>
+      <div class="pc-tags">
+        <span class="pt">PC Building</span>
+        <span class="pt">Hardware</span>
+        <span class="pt">Benchmarking</span>
+        <span class="pt">Thermals</span>
+        <span class="pt">Since 2020</span>
+      </div>
+    </div>
+
+    <div class="pc rv d4">
+      <div class="pc-top">
+        <span class="pc-num">04 / 05</span>
+        <div class="pc-arr">↗</div>
+      </div>
+      <div class="pc-title">Student Gradebook App</div>
+      <div class="pc-desc">A Java application built with modular, object-oriented programming principles. Applied rigorous debugging and edge-case testing to ensure accurate grade calculations across all scenarios. Fully documented for maintainability — clean code that someone else could pick up and extend.</div>
+      <div class="pc-tags">
+        <span class="pt">Java</span>
+        <span class="pt">OOP</span>
+        <span class="pt">Unit Testing</span>
+        <span class="pt">Documentation</span>
+      </div>
+    </div>
+
+    <div class="pc rv d5">
+      <div class="pc-top">
+        <span class="pc-num">05 / 05</span>
+        <div class="pc-arr">↗</div>
+      </div>
+      <div class="pc-title">This portfolio</div>
+      <div class="pc-desc">Built from scratch — no frameworks, no libraries. Custom lagging cursor, continuously morphing blob with fluid hover transitions, 3D tilt on card hover, scroll-triggered reveals, and an F1 timing-panel aesthetic. Every animation handwritten in CSS and vanilla JS.</div>
+      <div class="pc-tags">
+        <span class="pt">HTML</span>
+        <span class="pt">CSS animations</span>
+        <span class="pt">Vanilla JS</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="div"></div>
+
+<!-- EXPERIENCE -->
+<div class="section" id="experience">
+  <div class="rv">
+    <div class="sec-label">Experience</div>
+    <h2 class="sec-h">Where I've<br>worked</h2>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:14px;max-width:800px">
+
+    <div class="pc rv d1" style="padding:28px 32px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:16px">
+        <div>
+          <div class="pc-title" style="font-size:24px;margin-bottom:4px">VR Technical Support</div>
+          <div style="font-size:13px;color:var(--acc);font-weight:600">Fever — Titanic VR Experience · Sacramento, CA</div>
+        </div>
+        <div style="font-family:&#39;Space Mono&#39;,monospace;font-size:10px;color:var(--t3);text-align:right;padding-top:4px">
+          Nov 2025 — Present<br>
+          <span style="color:var(--acc-dim);background:var(--acc-d);border:1px solid rgba(232,200,78,.2);padding:2px 8px;border-radius:99px;font-size:9px">6-month contract</span>
+        </div>
+      </div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+        <li style="font-size:13px;color:var(--t2);line-height:1.7;display:flex;gap:12px"><span style="color:var(--acc);flex-shrink:0;margin-top:2px">▸</span>Ran comprehensive daily QA checklists across VR headsets, PC workstations, and peripherals — ensuring all hardware met strict performance standards before every public session.</li>
+        <li style="font-size:13px;color:var(--t2);line-height:1.7;display:flex;gap:12px"><span style="color:var(--acc);flex-shrink:0;margin-top:2px">▸</span>Primary technical point of contact for live hardware malfunctions and software bugs — performed rapid root-cause analysis to minimise downtime during live operations.</li>
+        <li style="font-size:13px;color:var(--t2);line-height:1.7;display:flex;gap:12px"><span style="color:var(--acc);flex-shrink:0;margin-top:2px">▸</span>Documented recurring error patterns and coordinated with ops teams to streamline resets and improve consistency — turning one-off fixes into repeatable processes.</li>
+      </ul>
+      <div class="pc-tags" style="margin-top:18px">
+        <span class="pt">QA</span><span class="pt">Root Cause Analysis</span><span class="pt">Hardware</span><span class="pt">VR Systems</span><span class="pt">Live ops</span>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+
+<div class="div"></div>
+
+<!-- CONTACT -->
+<div class="section" id="contact">
+  <div class="contact-grid">
+    <div class="rv">
+      <div class="sec-label">Contact</div>
+      <div class="contact-big">Let's<br>talk<span>.</span></div>
+      <p class="contact-sub">Open to internships, freelance projects, and collaborations. I reply fast — drop me a message or connect on any of the links.</p>
+      <div class="hero-btns">
+        <a href="mailto:mustafa.munir4411@gmail.com" class="btn btn-acc">Send an email</a>
+      </div>
+    </div>
+    <div class="c-links rv d2">
+      <a href="mailto:mustafa.munir4411@gmail.com" class="cl">
+        <span class="cl-ico">✉</span>
+        <span>mustafa.munir4411@gmail.com</span>
+        <span class="cl-arr">→</span>
+      </a>
+      <a href="tel:9165791541" class="cl">
+        <span class="cl-ico">◎</span>
+        <span>(916) 579-1541</span>
+        <span class="cl-arr">→</span>
+      </a>
+      <a href="https://github.com/" target="_blank" class="cl">
+        <span class="cl-ico">◇</span>
+        <span>GitHub</span>
+        <span class="cl-arr">→</span>
+      </a>
+      <a href="https://linkedin.com/" target="_blank" class="cl">
+        <span class="cl-ico">▣</span>
+        <span>LinkedIn</span>
+        <span class="cl-arr">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>Mustafa Khan · Elk Grove, CA · 2025</span>
+  <span style="color:var(--t3)">CS Student · Developer · Motorsport obsessive</span>
+</footer>
+
+<script>
+/* ── NAV (defined first, never breaks) ───── */
+function navTo(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var top = el.getBoundingClientRect().top + window.pageYOffset - 80;
+  window.scrollTo({ top: top, behavior: 'smooth' });
+}
+
+/* ── CURSOR ─────────────────────────────── */
+try {
+const cd = document.getElementById('cd');
+const cr = document.getElementById('cr');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cd.style.left = mx + 'px'; cd.style.top = my + 'px';
+});
+(function loop() {
+  rx += (mx - rx) * 0.11;
+  ry += (my - ry) * 0.11;
+  cr.style.left = rx + 'px'; cr.style.top = ry + 'px';
+  requestAnimationFrame(loop);
+})();
+
+document.querySelectorAll('a, button, .mc, .pc, .sk').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+});
+} catch(e) { console.warn('cursor:', e); }
+
+/* ── PROGRESS + NAV ─────────────────────── */
+try {
+const pbar = document.getElementById('pbar');
+const nav  = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  pbar.style.width = Math.min(pct, 100) + '%';
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+} catch(e) { console.warn('progress:', e); }
+
+/* ── SCROLL REVEAL ──────────────────────── */
+try {
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+} catch(e) { console.warn('reveal:', e); document.querySelectorAll('.rv').forEach(el=>el.classList.add('vis')); }
+
+/* ── 3D TILT ────────────────────────────── */
+try {
+document.querySelectorAll('.mc, .pc').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width  - 0.5) * 7;
+    const y = ((e.clientY - r.top)  / r.height - 0.5) * 7;
+    card.style.transform = `translateY(-4px) rotateX(${-y}deg) rotateY(${x}deg)`;
+    card.style.transition = 'transform .08s ease, border-color .3s';
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+    card.style.transition = 'transform .55s cubic-bezier(.23,1,.32,1), border-color .3s';
+  });
+});
+} catch(e) { console.warn('tilt:', e); }
+
+/* ── CPU DIE REVEAL ─────────────────────── */
+try {
+(function() {
+  const wrap  = document.getElementById('cpu-outer');
+  const ihs   = document.getElementById('cpu-ihs');
+  const tip   = document.getElementById('cpu-tooltip');
+  const pinGrid = document.getElementById('cpu-pins');
+
+  if (!wrap) return;
+
+  // build 8 core cells
+  const cg = document.getElementById('core-grid');
+  if (cg) for (let i=0;i<8;i++) { const d=document.createElement('div'); d.className='core-cell'; cg.appendChild(d); }
+
+  // build pin grid
+  if (pinGrid) for (let i=0;i<120;i++) { const p=document.createElement('div'); p.className='cpu-pin'; pinGrid.appendChild(p); }
+
+  // zone colour overrides
+  const zoneColors = {
+    'dz-cores':'232,200,78',
+    'dz-cache':'74,158,255',
+    'dz-mem':'192,132,252',
+    'dz-io':'251,146,60'
+  };
+  document.querySelectorAll('.die-zone').forEach(z => {
+    const c = zoneColors[z.id];
+    if (c) {
+      const hex = c.split(',').map(n=>parseInt(n).toString(16).padStart(2,'0')).join('');
+      z.style.setProperty('--zc', `rgba(${c},.55)`);
+      z.style.setProperty('--zcr', c);
+    }
+    z.addEventListener('mouseenter', () => {
+      const label  = z.dataset.label  || '';
+      const detail = z.dataset.detail || '';
+      tip.innerHTML = `<span style="opacity:.5;font-size:9px">${label}</span><br>${detail}`;
+      tip.classList.add('show');
+    });
+    z.addEventListener('mouseleave', () => tip.classList.remove('show'));
+  });
+
+  // cursor spotlight dissolves IHS
+  wrap.addEventListener('mousemove', e => {
+    const r = wrap.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width  * 100).toFixed(1);
+    const y = ((e.clientY - r.top)  / r.height * 100).toFixed(1);
+    const mask = `radial-gradient(circle 100px at ${x}% ${y}%, transparent 0%, black 68%)`;
+    ihs.style.webkitMaskImage = mask;
+    ihs.style.maskImage = mask;
+    // light up traces near cursor
+    const cx = e.clientX - r.left;
+    const cy = e.clientY - r.top;
+    document.querySelectorAll('#die-traces .trace').forEach(tr => {
+      const tr_r = tr.getBoundingClientRect();
+      const tx = tr_r.left + tr_r.width/2  - r.left;
+      const ty = tr_r.top  + tr_r.height/2 - r.top;
+      const dist = Math.hypot(cx-tx, cy-ty);
+      tr.style.background = dist < 70 ? `rgba(232,200,78,${Math.max(0, .35-(dist/70)*.35)})` : 'rgba(255,255,255,.04)';
+    });
+  });
+
+  wrap.addEventListener('mouseleave', () => {
+    ihs.style.webkitMaskImage = '';
+    ihs.style.maskImage = '';
+    tip.classList.remove('show');
+    document.querySelectorAll('#die-traces .trace').forEach(tr => { tr.style.background = ''; });
+  });
+})();
+} catch(e) { console.warn('cpu-die:', e); }
+
+/* ── PC RIG INTERACTIONS ─────────────────── */
+try {
+const rigCase  = document.getElementById('rig-case');
+const rigGlass = document.getElementById('rig-glass');
+const compCard = document.getElementById('comp-card');
+const rigDef   = document.getElementById('rig-default');
+
+if (rigCase) {
+  rigCase.addEventListener('mousemove', e => {
+    const r = rigCase.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width  * 100).toFixed(1);
+    const y = ((e.clientY - r.top)  / r.height * 100).toFixed(1);
+    const mask = `radial-gradient(circle 110px at ${x}% ${y}%, transparent 0%, black 72%)`;
+    rigGlass.style.webkitMaskImage = mask;
+    rigGlass.style.maskImage = mask;
+  });
+  rigCase.addEventListener('mouseleave', () => {
+    rigGlass.style.webkitMaskImage = '';
+    rigGlass.style.maskImage = '';
+    if (compCard) { compCard.classList.remove('vis'); setTimeout(()=>{ compCard.style.display='none'; rigDef.style.display='block'; }, 310); }
+  });
+  document.querySelectorAll('.comp').forEach(c => {
+    c.addEventListener('mouseenter', () => {
+      const name  = c.dataset.n;
+      const badge = c.dataset.b;
+      const spec  = c.dataset.s;
+      const desc  = c.dataset.desc;
+      document.getElementById('cc-badge').textContent = badge;
+      document.getElementById('cc-name').textContent  = name;
+      document.getElementById('cc-spec').textContent  = spec;
+      document.getElementById('cc-desc').textContent  = desc;
+      const rows = [['k1','v1'],['k2','v2'],['k3','v3']]
+        .filter(([k])=>c.dataset[k])
+        .map(([k,v])=>`<div class="spec-row"><span class="spec-key">${c.dataset[k]}</span><span class="spec-val">${c.dataset[v]}</span></div>`)
+        .join('');
+      document.getElementById('cc-rows').innerHTML = rows;
+      rigDef.style.display = 'none';
+      compCard.style.display = 'block';
+      requestAnimationFrame(()=>requestAnimationFrame(()=>compCard.classList.add('vis')));
+    });
+  });
+}
+} catch(e) { console.warn('rig:', e); }
+
+/* ── SPEC SHEET UPDATE ───────────────────── */
+function updateSpecs() {
+  const map = {cpu:'si-cpu',gpu:'si-gpu',ram:'si-ram',mobo:'si-mobo',storage:'si-storage',cooler:'si-cooler',psu:'si-psu',case:'si-case'};
+  Object.entries(map).forEach(([field, elId]) => {
+    const inp = document.getElementById('es-'+field);
+    const out = document.getElementById(elId);
+    if (inp && out && inp.value.trim()) out.textContent = inp.value.trim();
+  });
+}
+
+/* ── ADD PROJECT ─────────────────────────── */
+let projCount = 5;
+function addProject() {
+  const title = document.getElementById('np-title').value.trim();
+  const desc  = document.getElementById('np-desc').value.trim();
+  const tags  = document.getElementById('np-tags').value.trim();
+  const link  = document.getElementById('np-link').value.trim();
+  if (!title) { alert('Please enter a project name'); return; }
+  projCount++;
+  const tagsHtml = tags.split(',').filter(t=>t.trim()).map(t=>`<span class="pt">${t.trim()}</span>`).join('');
+  const arrEl = link ? `<a href="${link}" target="_blank" style="text-decoration:none;color:inherit"><div class="pc-arr">↗</div></a>` : `<div class="pc-arr">↗</div>`;
+  const card = document.createElement('div');
+  card.className = 'pc rv d1';
+  card.style.cssText = 'perspective:800px';
+  card.innerHTML = `
+    <div class="pc-top"><span class="pc-num">0${projCount} / —</span>${arrEl}</div>
+    <div class="pc-title">${title}</div>
+    <div class="pc-desc">${desc}</div>
+    <div class="pc-tags">${tagsHtml}</div>`;
+  const grid = document.querySelector('.proj-grid');
+  if (grid) {
+    grid.appendChild(card);
+    setTimeout(()=>card.classList.add('vis'),50);
+    // Re-attach 3D tilt
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = ((e.clientX-r.left)/r.width -.5)*7;
+      const y = ((e.clientY-r.top) /r.height-.5)*7;
+      card.style.transform = `translateY(-4px) rotateX(${-y}deg) rotateY(${x}deg)`;
+    });
+    card.addEventListener('mouseleave',()=>{ card.style.transform=''; });
+  }
+  ['np-title','np-desc','np-tags','np-link'].forEach(id=>{ document.getElementById(id).value=''; });
+  alert(`"${title}" added to your projects!`);
+}
+
+/* ── ADD JOB ─────────────────────────────── */
+function addJob() {
+  const role    = document.getElementById('nj-role').value.trim();
+  const company = document.getElementById('nj-company').value.trim();
+  const dates   = document.getElementById('nj-dates').value.trim();
+  const bullets = document.getElementById('nj-bullets').value.trim();
+  const tags    = document.getElementById('nj-tags').value.trim();
+  if (!role) { alert('Please enter a job title'); return; }
+  const bulletsHtml = bullets.split('\n').filter(b=>b.trim()).map(b=>`<li style="font-size:13px;color:var(--t2);line-height:1.7;display:flex;gap:12px"><span style="color:var(--acc);flex-shrink:0;margin-top:2px">▸</span>${b.trim()}</li>`).join('');
+  const tagsHtml = tags.split(',').filter(t=>t.trim()).map(t=>`<span class="pt">${t.trim()}</span>`).join('');
+  const card = document.createElement('div');
+  card.className = 'pc rv vis';
+  card.style.cssText = 'padding:28px 32px';
+  card.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:16px">
+      <div>
+        <div class="pc-title" style="font-size:24px;margin-bottom:4px">${role}</div>
+        <div style="font-size:13px;color:var(--acc);font-weight:600">${company}</div>
+      </div>
+      <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--t3);text-align:right;padding-top:4px">${dates}</div>
+    </div>
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">${bulletsHtml}</ul>
+    <div class="pc-tags" style="margin-top:18px">${tagsHtml}</div>`;
+  const expWrap = document.querySelector('#experience > div[style]');
+  if (expWrap) expWrap.appendChild(card);
+  ['nj-role','nj-company','nj-dates','nj-bullets','nj-tags'].forEach(id=>{ document.getElementById(id).value=''; });
+  alert(`"${role}" added to your experience!`);
+}
+
+/* ── CREATIVE CONTROL PANEL ─────────────── */
+const EDITOR_HTML = `
+<div id="ed-overlay" onclick="closeEditor()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:800;backdrop-filter:blur(3px)"></div>
+<div id="ed-panel" style="position:fixed;right:-460px;top:0;bottom:0;width:440px;background:#101012;border-left:1px solid rgba(255,255,255,.09);z-index:801;display:flex;flex-direction:column;transition:right .38s cubic-bezier(.23,1,.32,1);font-family:'Plus Jakarta Sans',sans-serif;overflow:hidden;">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0">
+    <div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:.06em;color:#ece8e1">Creative Control</div>
+      <div style="font-size:10px;color:#45433f;letter-spacing:.06em;text-transform:uppercase;margin-top:1px">Live site editor</div>
+    </div>
+    <button onclick="closeEditor()" style="background:transparent;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#86827c;padding:6px 12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;cursor:none;transition:all .2s">✕ Close</button>
+  </div>
+  <div style="overflow-y:auto;flex:1;padding:20px 22px 28px;display:flex;flex-direction:column;gap:24px">
+
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">Identity</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:5px;font-weight:500">Full name</label><input id="ec-name" oninput="liveUpdate()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;padding:8px 12px;outline:none" placeholder="Mustafa Khan"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:5px;font-weight:500">Initials</label><input id="ec-initials" oninput="liveUpdate()" maxlength="3" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Space Mono',monospace;font-size:18px;padding:8px 12px;outline:none;text-align:center" placeholder="MK"></div>
+          <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:5px;font-weight:500">Eyebrow label</label><input id="ec-eyebrow" oninput="liveUpdate()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;padding:8px 12px;outline:none" placeholder="CS Student"></div>
+        </div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:5px;font-weight:500">Hero subtitle</label><textarea id="ec-sub" oninput="liveUpdate()" rows="3" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;padding:8px 12px;outline:none;resize:vertical"></textarea></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">Colours</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:5px;font-weight:500">Accent</label><div style="display:flex;gap:8px;align-items:center"><input type="color" id="ec-acc" value="#e8c84e" oninput="liveColorUpdate()" style="width:38px;height:38px;border:1px solid rgba(255,255,255,.1);border-radius:8px;background:transparent;padding:2px;cursor:none"><input id="ec-acc-hex" oninput="hexColorUpdate('ec-acc','ec-acc-hex')" style="flex:1;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Space Mono',monospace;font-size:12px;padding:8px 10px;outline:none" placeholder="#e8c84e"></div></div>
+          <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:5px;font-weight:500">Background</label><div style="display:flex;gap:8px;align-items:center"><input type="color" id="ec-bg" value="#09090b" oninput="liveColorUpdate()" style="width:38px;height:38px;border:1px solid rgba(255,255,255,.1);border-radius:8px;background:transparent;padding:2px;cursor:none"><input id="ec-bg-hex" oninput="hexColorUpdate('ec-bg','ec-bg-hex')" style="flex:1;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Space Mono',monospace;font-size:12px;padding:8px 10px;outline:none" placeholder="#09090b"></div></div>
+        </div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:8px;font-weight:500">Presets</label><div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button onclick="applyPreset('#e8c84e','#09090b')" style="width:30px;height:30px;border-radius:50%;background:#e8c84e;border:2px solid rgba(255,255,255,.15);cursor:none" title="Gold"></button>
+          <button onclick="applyPreset('#4a9eff','#07090f')" style="width:30px;height:30px;border-radius:50%;background:#4a9eff;border:2px solid rgba(255,255,255,.1);cursor:none" title="Blue"></button>
+          <button onclick="applyPreset('#e84040','#0d0909')" style="width:30px;height:30px;border-radius:50%;background:#e84040;border:2px solid rgba(255,255,255,.1);cursor:none" title="Red"></button>
+          <button onclick="applyPreset('#4ade80','#070d0a')" style="width:30px;height:30px;border-radius:50%;background:#4ade80;border:2px solid rgba(255,255,255,.1);cursor:none" title="Green"></button>
+          <button onclick="applyPreset('#c084fc','#0c090f')" style="width:30px;height:30px;border-radius:50%;background:#c084fc;border:2px solid rgba(255,255,255,.1);cursor:none" title="Purple"></button>
+          <button onclick="applyPreset('#fb923c','#0e0a07')" style="width:30px;height:30px;border-radius:50%;background:#fb923c;border:2px solid rgba(255,255,255,.1);cursor:none" title="Orange"></button>
+          <button onclick="applyPreset('#f0ede8','#0e0e0f')" style="width:30px;height:30px;border-radius:50%;background:#f0ede8;border:2px solid rgba(255,255,255,.15);cursor:none" title="White"></button>
+        </div></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">Display font</div>
+      <select id="ec-font" onchange="liveUpdate()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;padding:9px 12px;outline:none;cursor:none">
+        <option value="Bebas Neue">Bebas Neue — bold racing (current)</option>
+        <option value="Anton">Anton — heavy impact</option>
+        <option value="Oswald">Oswald — condensed editorial</option>
+        <option value="Teko">Teko — technical minimal</option>
+        <option value="Rajdhani">Rajdhani — futuristic</option>
+        <option value="Big Shoulders Display">Big Shoulders Display — industrial</option>
+      </select>
+    </div>
+
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">Contact links</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:5px;font-weight:500">Email</label><input id="ec-email" oninput="liveUpdate()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;padding:8px 12px;outline:none" placeholder="your@email.com"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:5px;font-weight:500">GitHub URL</label><input id="ec-github" oninput="liveUpdate()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;padding:8px 12px;outline:none" placeholder="https://github.com/yourusername"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:5px;font-weight:500">LinkedIn URL</label><input id="ec-linkedin" oninput="liveUpdate()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;padding:8px 12px;outline:none" placeholder="https://linkedin.com/in/yourusername"></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">Show / hide sections</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        ${[['about','About'],['motorsport','Motorsport'],['projects','Projects'],['experience','Experience'],['contact','Contact']].map(([id,label])=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#161618;border:1px solid rgba(255,255,255,.06);border-radius:8px"><span style="font-size:13px;color:#86827c">${label}</span><label style="position:relative;width:36px;height:20px;cursor:none"><input type="checkbox" id="tog-${id}" checked onchange="toggleSection('${id}',this.checked)" style="opacity:0;width:0;height:0;position:absolute"><span id="tog-track-${id}" style="position:absolute;inset:0;background:#e8c84e;border:1px solid rgba(255,255,255,.1);border-radius:10px;transition:background .2s"></span><span id="tog-thumb-${id}" style="position:absolute;top:2px;left:2px;width:14px;height:14px;background:#09090b;border-radius:50%;transition:transform .2s;transform:translateX(16px)"></span></label></div>`).join('')}
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">My rig specs</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">CPU</label><input id="es-cpu" oninput="updateSpecs()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Space Mono',monospace;font-size:11px;padding:7px 10px;outline:none" placeholder="e.g. AMD Ryzen 5 5600X"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">GPU</label><input id="es-gpu" oninput="updateSpecs()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Space Mono',monospace;font-size:11px;padding:7px 10px;outline:none" placeholder="e.g. NVIDIA RTX 3070"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">RAM</label><input id="es-ram" oninput="updateSpecs()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Space Mono',monospace;font-size:11px;padding:7px 10px;outline:none" placeholder="e.g. 32GB DDR4 3200MHz"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Motherboard</label><input id="es-mobo" oninput="updateSpecs()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Space Mono',monospace;font-size:11px;padding:7px 10px;outline:none" placeholder="e.g. ASUS ROG Strix B550-F"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Storage</label><input id="es-storage" oninput="updateSpecs()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Space Mono',monospace;font-size:11px;padding:7px 10px;outline:none" placeholder="e.g. Samsung 1TB NVMe"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">CPU cooler</label><input id="es-cooler" oninput="updateSpecs()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Space Mono',monospace;font-size:11px;padding:7px 10px;outline:none" placeholder="e.g. be quiet! Dark Rock 4"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">PSU</label><input id="es-psu" oninput="updateSpecs()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Space Mono',monospace;font-size:11px;padding:7px 10px;outline:none" placeholder="e.g. Corsair RM750x Gold"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Case</label><input id="es-case" oninput="updateSpecs()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Space Mono',monospace;font-size:11px;padding:7px 10px;outline:none" placeholder="e.g. NZXT H510 Mid-tower"></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">Add a project</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Project name</label><input id="np-title" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;padding:8px 10px;outline:none" placeholder="My new project"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Description</label><textarea id="np-desc" rows="3" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;padding:8px 10px;outline:none;resize:vertical" placeholder="What does it do, how did you build it..."></textarea></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Tags (comma separated)</label><input id="np-tags" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;padding:8px 10px;outline:none" placeholder="React, Node.js, API"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Link (optional)</label><input id="np-link" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;padding:8px 10px;outline:none" placeholder="https://github.com/..."></div>
+        <button onclick="addProject()" style="width:100%;background:rgba(232,200,78,0.12);color:#e8c84e;border:1px solid rgba(232,200,78,0.25);border-radius:8px;padding:10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;cursor:none;transition:all .2s">+ Add to projects</button>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">Add a job / experience</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Job title</label><input id="nj-role" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;padding:8px 10px;outline:none" placeholder="e.g. Frontend Developer"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Company</label><input id="nj-company" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;padding:8px 10px;outline:none" placeholder="e.g. Acme Corp · Sacramento, CA"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Dates</label><input id="nj-dates" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;padding:8px 10px;outline:none" placeholder="e.g. Jan 2025 — Present"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Key bullet points</label><textarea id="nj-bullets" rows="4" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;padding:8px 10px;outline:none;resize:vertical" placeholder="One bullet per line..."></textarea></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Tags (comma separated)</label><input id="nj-tags" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;padding:8px 10px;outline:none" placeholder="React, QA, Python..."></div>
+        <button onclick="addJob()" style="width:100%;background:rgba(74,158,255,0.1);color:#4a9eff;border:1px solid rgba(74,158,255,0.22);border-radius:8px;padding:10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;cursor:none;transition:all .2s">+ Add to experience</button>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">Push to GitHub</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+        <div>
+          <label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">GitHub username</label>
+          <input id="gh-user" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;padding:8px 10px;outline:none" placeholder="yourusername">
+        </div>
+        <div>
+          <label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Personal access token <a href="https://github.com/settings/tokens/new?scopes=repo" target="_blank" style="color:#4a9eff;font-size:10px">get one ↗</a></label>
+          <input type="password" id="gh-token" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:'Space Mono',monospace;font-size:11px;padding:8px 10px;outline:none" placeholder="ghp_xxxxxxxxxxxx">
+        </div>
+        <button onclick="pushToGitHub()" id="gh-push-btn" style="width:100%;background:rgba(74,158,255,0.12);color:#4a9eff;border:1px solid rgba(74,158,255,0.25);border-radius:8px;padding:11px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;cursor:none;transition:all .2s">Push live to GitHub ↗</button>
+        <div id="gh-status" style="font-size:11px;text-align:center;min-height:16px;color:#86827c"></div>
+      </div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">Or download</div>
+      <button onclick="exportSite()" style="width:100%;background:#e8c84e;color:#09090b;border:none;border-radius:8px;padding:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;cursor:none;transition:background .2s">Download index.html</button>
+      <div style="margin-top:14px;background:#161618;border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:14px">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#45433f;margin-bottom:10px">To go live on GitHub</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <span style="font-family:'Space Mono',monospace;font-size:10px;color:#e8c84e;flex-shrink:0;margin-top:1px">01</span>
+            <span style="font-size:11px;color:#86827c;line-height:1.5">Download the file above</span>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <span style="font-family:'Space Mono',monospace;font-size:10px;color:#e8c84e;flex-shrink:0;margin-top:1px">02</span>
+            <span style="font-size:11px;color:#86827c;line-height:1.5">Go to your GitHub repo</span>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <span style="font-family:'Space Mono',monospace;font-size:10px;color:#e8c84e;flex-shrink:0;margin-top:1px">03</span>
+            <span style="font-size:11px;color:#86827c;line-height:1.5">Click the existing <span style="color:#ece8e1;font-family:'Space Mono',monospace">index.html</span> → pencil icon → select all → paste new file contents → Commit</span>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <span style="font-family:'Space Mono',monospace;font-size:10px;color:#e8c84e;flex-shrink:0;margin-top:1px">04</span>
+            <span style="font-size:11px;color:#86827c;line-height:1.5">Site goes live in ~30 seconds</span>
+          </div>
+        </div>
+        <button onclick="copyFileContents()" style="width:100%;margin-top:12px;background:rgba(255,255,255,.04);color:#86827c;border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:9px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:500;cursor:none;transition:all .2s" id="copy-html-btn">Copy all HTML to clipboard</button>
+        <p style="font-size:10px;color:#45433f;margin-top:8px;line-height:1.5;text-align:center">Paste directly into GitHub's editor — no file upload needed</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<button id="ed-btn" onclick="openEditor()" style="position:fixed;bottom:28px;right:28px;z-index:700;display:none;align-items:center;gap:8px;background:#e8c84e;color:#09090b;border:none;border-radius:99px;padding:11px 20px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;cursor:none;box-shadow:0 4px 24px rgba(232,200,78,.3);transition:all .2s">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+  Edit site
+</button>
+`;
+document.body.insertAdjacentHTML('beforeend', EDITOR_HTML);
+
+const fontLink = document.createElement('link');
+fontLink.rel = 'stylesheet';
+fontLink.href = 'https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@700&family=Teko:wght@700&family=Rajdhani:wght@700&family=Big+Shoulders+Display:wght@700&display=swap';
+document.head.appendChild(fontLink);
+
+let editorUnlocked = false;
+const secretKeys = [];
+window.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  secretKeys.push(e.key.toLowerCase());
+  if (secretKeys.length > 4) secretKeys.shift();
+  if (secretKeys.join('').includes('edit')) {
+    secretKeys.length = 0;
+    editorUnlocked = !editorUnlocked;
+    const btn = document.getElementById('ed-btn');
+    btn.style.display = editorUnlocked ? 'flex' : 'none';
+    if (!editorUnlocked) closeEditor();
+  }
+});
+
+function openEditor() {
+  document.getElementById('ed-overlay').style.display = 'block';
+  document.getElementById('ed-panel').style.right = '0';
+  document.getElementById('ed-btn').style.display = 'none';
+  populateFields();
+}
+function closeEditor() {
+  document.getElementById('ed-overlay').style.display = 'none';
+  document.getElementById('ed-panel').style.right = '-460px';
+  const btn = document.getElementById('ed-btn');
+  if (editorUnlocked) btn.style.display = 'flex';
+}
+function populateFields() {
+  const sub = document.querySelector('.hero-sub');
+  const eye = document.querySelector('.hero-eyebrow');
+  if (sub) document.getElementById('ec-sub').value = sub.innerText.trim();
+  if (eye) document.getElementById('ec-eyebrow').value = eye.innerText.trim();
+  document.getElementById('ec-name').value = 'Mustafa Khan';
+  document.getElementById('ec-initials').value = 'MK';
+  document.getElementById('ec-acc-hex').value = getComputedStyle(document.documentElement).getPropertyValue('--acc').trim() || '#e8c84e';
+  document.getElementById('ec-bg-hex').value = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#09090b';
+  document.getElementById('ec-email').value = 'mustafa.munir4411@gmail.com';
+  const ghLink = document.querySelector('a[href*="github"]');
+  if (ghLink) document.getElementById('ec-github').value = ghLink.href;
+  const liLink = document.querySelector('a[href*="linkedin"]');
+  if (liLink) document.getElementById('ec-linkedin').value = liLink.href;
+}
+function liveUpdate() {
+  const name     = document.getElementById('ec-name').value;
+  const initials = document.getElementById('ec-initials').value;
+  const eyebrow  = document.getElementById('ec-eyebrow').value;
+  const sub      = document.getElementById('ec-sub').value;
+  const email    = document.getElementById('ec-email').value;
+  const github   = document.getElementById('ec-github').value;
+  const linkedin = document.getElementById('ec-linkedin').value;
+  const font     = document.getElementById('ec-font').value;
+
+  const parts = name.trim().split(' ');
+  const first = parts[0] || '', last = parts.slice(1).join(' ') || '';
+  const nameEl = document.querySelector('.hero-name');
+  if (nameEl) nameEl.innerHTML = `${first}<br><span class="hl">${last}</span>`;
+
+  const eye = document.querySelector('.hero-eyebrow');
+  if (eye) { const nodes = eye.childNodes; nodes[nodes.length-1].textContent = ' ' + eyebrow; }
+
+  const subEl = document.querySelector('.hero-sub');
+  if (subEl) subEl.textContent = sub;
+
+  const ft = document.querySelector('footer span:first-child');
+  if (ft) ft.textContent = `${first} ${last} · Elk Grove, CA · 2025`;
+
+  document.querySelectorAll('a[href^="mailto:"]').forEach(a => a.href = 'mailto:' + email);
+  document.querySelectorAll('.cl').forEach(cl => {
+    const ico = cl.querySelector('.cl-ico');
+    if (ico && ico.textContent === '✉') {
+      const spans = cl.querySelectorAll('span');
+      if (spans[1]) spans[1].textContent = email;
+    }
+  });
+  if (github)   document.querySelectorAll('a[href*="github"]').forEach(a => a.href = github);
+  if (linkedin) document.querySelectorAll('a[href*="linkedin"]').forEach(a => a.href = linkedin);
+
+  document.querySelectorAll('.hero-name,.sec-h,.contact-big,.mc-title,.pc-title,.nav-logo,.morph-initials').forEach(el => {
+    el.style.fontFamily = `'${font}', sans-serif`;
+  });
+}
+function liveColorUpdate() {
+  const acc = document.getElementById('ec-acc').value;
+  const bg  = document.getElementById('ec-bg').value;
+  document.getElementById('ec-acc-hex').value = acc;
+  document.getElementById('ec-bg-hex').value  = bg;
+  applyColors(acc, bg);
+}
+function hexColorUpdate(colorId, hexId) {
+  const val = document.getElementById(hexId).value.trim();
+  if (/^#[0-9a-fA-F]{6}$/.test(val)) {
+    document.getElementById(colorId).value = val;
+    applyColors(document.getElementById('ec-acc').value, document.getElementById('ec-bg').value);
+  }
+}
+function applyColors(acc, bg) {
+  const r = document.documentElement.style;
+  const a = parseInt(acc.slice(1,3),16), g2 = parseInt(acc.slice(3,5),16), b2 = parseInt(acc.slice(5,7),16);
+  r.setProperty('--acc',  acc);
+  r.setProperty('--acc2', shadeColor(acc,-15));
+  r.setProperty('--acc-d',`rgba(${a},${g2},${b2},0.10)`);
+  r.setProperty('--bg',   bg);
+  r.setProperty('--bg2',  shadeColor(bg, 4));
+  r.setProperty('--bg3',  shadeColor(bg, 8));
+  r.setProperty('--bg4',  shadeColor(bg,12));
+  const btn = document.getElementById('ed-btn');
+  if (btn) { btn.style.background = acc; btn.style.color = '#09090b'; btn.style.boxShadow = `0 4px 24px ${acc}55`; }
+}
+function applyPreset(acc, bg) {
+  document.getElementById('ec-acc').value = acc;
+  document.getElementById('ec-bg').value  = bg;
+  document.getElementById('ec-acc-hex').value = acc;
+  document.getElementById('ec-bg-hex').value  = bg;
+  applyColors(acc, bg);
+}
+function shadeColor(hex, pct) {
+  const num = parseInt(hex.replace('#',''),16), amt = Math.round(2.55*pct);
+  const R = Math.min(255,Math.max(0,(num>>16)+amt));
+  const G = Math.min(255,Math.max(0,((num>>8)&0xff)+amt));
+  const B = Math.min(255,Math.max(0,(num&0xff)+amt));
+  return '#'+[R,G,B].map(v=>v.toString(16).padStart(2,'0')).join('');
+}
+function toggleSection(id, on) {
+  const el = document.getElementById(id);
+  if (el) el.style.display = on ? '' : 'none';
+  const track = document.getElementById('tog-track-'+id);
+  const thumb = document.getElementById('tog-thumb-'+id);
+  if (track) track.style.background = on ? 'var(--acc)' : '#1c1c1f';
+  if (thumb) { thumb.style.transform = on ? 'translateX(16px)' : 'translateX(0)'; thumb.style.background = on ? '#09090b' : '#45433f'; }
+}
+async function pushToGitHub() {
+  const user  = document.getElementById('gh-user').value.trim();
+  const token = document.getElementById('gh-token').value.trim();
+  const status = document.getElementById('gh-status');
+  const btn    = document.getElementById('gh-push-btn');
+
+  if (!user)  { status.style.color='#e84040'; status.textContent='Enter your GitHub username'; return; }
+  if (!token) { status.style.color='#e84040'; status.textContent='Enter your personal access token'; return; }
+
+  const repo = `${user}.github.io`;
+  const path = 'index.html';
+  const apiBase = `https://api.github.com/repos/${user}/${repo}/contents/${path}`;
+
+  btn.textContent = 'Pushing…';
+  btn.style.opacity = '0.6';
+  status.style.color = '#86827c';
+  status.textContent = 'Getting current file SHA…';
+
+  // Hide editor chrome before snapshotting
+  const edBtn   = document.getElementById('ed-btn');
+  const edPanel = document.getElementById('ed-panel');
+  const edOver  = document.getElementById('ed-overlay');
+  edBtn.style.display = 'none';
+  edPanel.style.display = 'none';
+  edOver.style.display = 'none';
+
+  const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+  // Restore editor
+  edPanel.style.display = 'flex';
+  edOver.style.display = 'none';
+  if (editorUnlocked) edBtn.style.display = 'flex';
+
+  try {
+    // Get current file SHA (needed for update)
+    let sha = null;
+    const getRes = await fetch(apiBase, {
+      headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    if (getRes.ok) {
+      const data = await getRes.json();
+      sha = data.sha;
+    }
+
+    status.textContent = 'Uploading…';
+
+    // Base64 encode
+    const b64 = btoa(unescape(encodeURIComponent(html)));
+
+    const body = {
+      message: `Update portfolio — ${new Date().toLocaleString()}`,
+      content: b64,
+    };
+    if (sha) body.sha = sha;
+
+    const putRes = await fetch(apiBase, {
+      method: 'PUT',
+      headers: {
+        Authorization: `token ${token}`,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+
+    if (putRes.ok) {
+      status.style.color = '#4ade80';
+      status.textContent = `✓ Live at ${user}.github.io in ~30s`;
+      btn.textContent = 'Pushed ✓';
+      btn.style.opacity = '1';
+      btn.style.background = 'rgba(74,222,128,0.12)';
+      btn.style.color = '#4ade80';
+      btn.style.borderColor = 'rgba(74,222,128,0.25)';
+    } else {
+      const err = await putRes.json();
+      throw new Error(err.message || `HTTP ${putRes.status}`);
+    }
+  } catch(err) {
+    status.style.color = '#e84040';
+    status.textContent = `Error: ${err.message}`;
+    btn.textContent = 'Push live to GitHub ↗';
+    btn.style.opacity = '1';
+  }
+}
+
+function exportSite() {
+  const btn = document.getElementById('ed-btn');
+  const panel = document.getElementById('ed-panel');
+  const overlay = document.getElementById('ed-overlay');
+  btn.style.display = 'none'; panel.style.display = 'none'; overlay.style.display = 'none';
+  const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([html],{type:'text/html'}));
+  a.download = 'index.html'; a.click();
+  setTimeout(() => { btn.style.display='flex'; panel.style.display='flex'; closeEditor(); }, 500);
+}
+</script>
+<div id="ed-overlay" onclick="closeEditor()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:800;backdrop-filter:blur(3px)"></div>
+<div id="ed-panel" style="position:fixed;right:-460px;top:0;bottom:0;width:440px;background:#101012;border-left:1px solid rgba(255,255,255,.09);z-index:801;display:flex;flex-direction:column;transition:right .38s cubic-bezier(.23,1,.32,1);font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;overflow:hidden;">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0">
+    <div>
+      <div style="font-family:&#39;Bebas Neue&#39;,sans-serif;font-size:19px;letter-spacing:.06em;color:#ece8e1">Creative Control</div>
+      <div style="font-size:10px;color:#45433f;letter-spacing:.06em;text-transform:uppercase;margin-top:1px">Live site editor</div>
+    </div>
+    <button onclick="closeEditor()" style="background:transparent;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#86827c;padding:6px 12px;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:12px;cursor:none;transition:all .2s">✕ Close</button>
+  </div>
+  <div style="overflow-y:auto;flex:1;padding:20px 22px 28px;display:flex;flex-direction:column;gap:24px">
+
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">Identity</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:5px;font-weight:500">Full name</label><input id="ec-name" oninput="liveUpdate()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:13px;padding:8px 12px;outline:none" placeholder="Mustafa Khan"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:5px;font-weight:500">Initials</label><input id="ec-initials" oninput="liveUpdate()" maxlength="3" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Space Mono&#39;,monospace;font-size:18px;padding:8px 12px;outline:none;text-align:center" placeholder="MK"></div>
+          <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:5px;font-weight:500">Eyebrow label</label><input id="ec-eyebrow" oninput="liveUpdate()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:12px;padding:8px 12px;outline:none" placeholder="CS Student"></div>
+        </div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:5px;font-weight:500">Hero subtitle</label><textarea id="ec-sub" oninput="liveUpdate()" rows="3" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:12px;padding:8px 12px;outline:none;resize:vertical"></textarea></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">Colours</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:5px;font-weight:500">Accent</label><div style="display:flex;gap:8px;align-items:center"><input type="color" id="ec-acc" value="#e8c84e" oninput="liveColorUpdate()" style="width:38px;height:38px;border:1px solid rgba(255,255,255,.1);border-radius:8px;background:transparent;padding:2px;cursor:none"><input id="ec-acc-hex" oninput="hexColorUpdate(&#39;ec-acc&#39;,&#39;ec-acc-hex&#39;)" style="flex:1;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Space Mono&#39;,monospace;font-size:12px;padding:8px 10px;outline:none" placeholder="#e8c84e"></div></div>
+          <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:5px;font-weight:500">Background</label><div style="display:flex;gap:8px;align-items:center"><input type="color" id="ec-bg" value="#09090b" oninput="liveColorUpdate()" style="width:38px;height:38px;border:1px solid rgba(255,255,255,.1);border-radius:8px;background:transparent;padding:2px;cursor:none"><input id="ec-bg-hex" oninput="hexColorUpdate(&#39;ec-bg&#39;,&#39;ec-bg-hex&#39;)" style="flex:1;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Space Mono&#39;,monospace;font-size:12px;padding:8px 10px;outline:none" placeholder="#09090b"></div></div>
+        </div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:8px;font-weight:500">Presets</label><div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button onclick="applyPreset(&#39;#e8c84e&#39;,&#39;#09090b&#39;)" style="width:30px;height:30px;border-radius:50%;background:#e8c84e;border:2px solid rgba(255,255,255,.15);cursor:none" title="Gold"></button>
+          <button onclick="applyPreset(&#39;#4a9eff&#39;,&#39;#07090f&#39;)" style="width:30px;height:30px;border-radius:50%;background:#4a9eff;border:2px solid rgba(255,255,255,.1);cursor:none" title="Blue"></button>
+          <button onclick="applyPreset(&#39;#e84040&#39;,&#39;#0d0909&#39;)" style="width:30px;height:30px;border-radius:50%;background:#e84040;border:2px solid rgba(255,255,255,.1);cursor:none" title="Red"></button>
+          <button onclick="applyPreset(&#39;#4ade80&#39;,&#39;#070d0a&#39;)" style="width:30px;height:30px;border-radius:50%;background:#4ade80;border:2px solid rgba(255,255,255,.1);cursor:none" title="Green"></button>
+          <button onclick="applyPreset(&#39;#c084fc&#39;,&#39;#0c090f&#39;)" style="width:30px;height:30px;border-radius:50%;background:#c084fc;border:2px solid rgba(255,255,255,.1);cursor:none" title="Purple"></button>
+          <button onclick="applyPreset(&#39;#fb923c&#39;,&#39;#0e0a07&#39;)" style="width:30px;height:30px;border-radius:50%;background:#fb923c;border:2px solid rgba(255,255,255,.1);cursor:none" title="Orange"></button>
+          <button onclick="applyPreset(&#39;#f0ede8&#39;,&#39;#0e0e0f&#39;)" style="width:30px;height:30px;border-radius:50%;background:#f0ede8;border:2px solid rgba(255,255,255,.15);cursor:none" title="White"></button>
+        </div></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">Display font</div>
+      <select id="ec-font" onchange="liveUpdate()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:13px;padding:9px 12px;outline:none;cursor:none">
+        <option value="Bebas Neue">Bebas Neue — bold racing (current)</option>
+        <option value="Anton">Anton — heavy impact</option>
+        <option value="Oswald">Oswald — condensed editorial</option>
+        <option value="Teko">Teko — technical minimal</option>
+        <option value="Rajdhani">Rajdhani — futuristic</option>
+        <option value="Big Shoulders Display">Big Shoulders Display — industrial</option>
+      </select>
+    </div>
+
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">Contact links</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:5px;font-weight:500">Email</label><input id="ec-email" oninput="liveUpdate()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:12px;padding:8px 12px;outline:none" placeholder="your@email.com"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:5px;font-weight:500">GitHub URL</label><input id="ec-github" oninput="liveUpdate()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:12px;padding:8px 12px;outline:none" placeholder="https://github.com/yourusername"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:5px;font-weight:500">LinkedIn URL</label><input id="ec-linkedin" oninput="liveUpdate()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:12px;padding:8px 12px;outline:none" placeholder="https://linkedin.com/in/yourusername"></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">Show / hide sections</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#161618;border:1px solid rgba(255,255,255,.06);border-radius:8px"><span style="font-size:13px;color:#86827c">About</span><label style="position:relative;width:36px;height:20px;cursor:none"><input type="checkbox" id="tog-about" checked="" onchange="toggleSection(&#39;about&#39;,this.checked)" style="opacity:0;width:0;height:0;position:absolute"><span id="tog-track-about" style="position:absolute;inset:0;background:#e8c84e;border:1px solid rgba(255,255,255,.1);border-radius:10px;transition:background .2s"></span><span id="tog-thumb-about" style="position:absolute;top:2px;left:2px;width:14px;height:14px;background:#09090b;border-radius:50%;transition:transform .2s;transform:translateX(16px)"></span></label></div><div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#161618;border:1px solid rgba(255,255,255,.06);border-radius:8px"><span style="font-size:13px;color:#86827c">Motorsport</span><label style="position:relative;width:36px;height:20px;cursor:none"><input type="checkbox" id="tog-motorsport" checked="" onchange="toggleSection(&#39;motorsport&#39;,this.checked)" style="opacity:0;width:0;height:0;position:absolute"><span id="tog-track-motorsport" style="position:absolute;inset:0;background:#e8c84e;border:1px solid rgba(255,255,255,.1);border-radius:10px;transition:background .2s"></span><span id="tog-thumb-motorsport" style="position:absolute;top:2px;left:2px;width:14px;height:14px;background:#09090b;border-radius:50%;transition:transform .2s;transform:translateX(16px)"></span></label></div><div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#161618;border:1px solid rgba(255,255,255,.06);border-radius:8px"><span style="font-size:13px;color:#86827c">Projects</span><label style="position:relative;width:36px;height:20px;cursor:none"><input type="checkbox" id="tog-projects" checked="" onchange="toggleSection(&#39;projects&#39;,this.checked)" style="opacity:0;width:0;height:0;position:absolute"><span id="tog-track-projects" style="position:absolute;inset:0;background:#e8c84e;border:1px solid rgba(255,255,255,.1);border-radius:10px;transition:background .2s"></span><span id="tog-thumb-projects" style="position:absolute;top:2px;left:2px;width:14px;height:14px;background:#09090b;border-radius:50%;transition:transform .2s;transform:translateX(16px)"></span></label></div><div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#161618;border:1px solid rgba(255,255,255,.06);border-radius:8px"><span style="font-size:13px;color:#86827c">Experience</span><label style="position:relative;width:36px;height:20px;cursor:none"><input type="checkbox" id="tog-experience" checked="" onchange="toggleSection(&#39;experience&#39;,this.checked)" style="opacity:0;width:0;height:0;position:absolute"><span id="tog-track-experience" style="position:absolute;inset:0;background:#e8c84e;border:1px solid rgba(255,255,255,.1);border-radius:10px;transition:background .2s"></span><span id="tog-thumb-experience" style="position:absolute;top:2px;left:2px;width:14px;height:14px;background:#09090b;border-radius:50%;transition:transform .2s;transform:translateX(16px)"></span></label></div><div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#161618;border:1px solid rgba(255,255,255,.06);border-radius:8px"><span style="font-size:13px;color:#86827c">Contact</span><label style="position:relative;width:36px;height:20px;cursor:none"><input type="checkbox" id="tog-contact" checked="" onchange="toggleSection(&#39;contact&#39;,this.checked)" style="opacity:0;width:0;height:0;position:absolute"><span id="tog-track-contact" style="position:absolute;inset:0;background:#e8c84e;border:1px solid rgba(255,255,255,.1);border-radius:10px;transition:background .2s"></span><span id="tog-thumb-contact" style="position:absolute;top:2px;left:2px;width:14px;height:14px;background:#09090b;border-radius:50%;transition:transform .2s;transform:translateX(16px)"></span></label></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">My rig specs</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">CPU</label><input id="es-cpu" oninput="updateSpecs()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Space Mono&#39;,monospace;font-size:11px;padding:7px 10px;outline:none" placeholder="e.g. AMD Ryzen 5 5600X"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">GPU</label><input id="es-gpu" oninput="updateSpecs()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Space Mono&#39;,monospace;font-size:11px;padding:7px 10px;outline:none" placeholder="e.g. NVIDIA RTX 3070"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">RAM</label><input id="es-ram" oninput="updateSpecs()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Space Mono&#39;,monospace;font-size:11px;padding:7px 10px;outline:none" placeholder="e.g. 32GB DDR4 3200MHz"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Motherboard</label><input id="es-mobo" oninput="updateSpecs()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Space Mono&#39;,monospace;font-size:11px;padding:7px 10px;outline:none" placeholder="e.g. ASUS ROG Strix B550-F"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Storage</label><input id="es-storage" oninput="updateSpecs()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Space Mono&#39;,monospace;font-size:11px;padding:7px 10px;outline:none" placeholder="e.g. Samsung 1TB NVMe"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">CPU cooler</label><input id="es-cooler" oninput="updateSpecs()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Space Mono&#39;,monospace;font-size:11px;padding:7px 10px;outline:none" placeholder="e.g. be quiet! Dark Rock 4"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">PSU</label><input id="es-psu" oninput="updateSpecs()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Space Mono&#39;,monospace;font-size:11px;padding:7px 10px;outline:none" placeholder="e.g. Corsair RM750x Gold"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Case</label><input id="es-case" oninput="updateSpecs()" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Space Mono&#39;,monospace;font-size:11px;padding:7px 10px;outline:none" placeholder="e.g. NZXT H510 Mid-tower"></div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">Add a project</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Project name</label><input id="np-title" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:12px;padding:8px 10px;outline:none" placeholder="My new project"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Description</label><textarea id="np-desc" rows="3" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:12px;padding:8px 10px;outline:none;resize:vertical" placeholder="What does it do, how did you build it..."></textarea></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Tags (comma separated)</label><input id="np-tags" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:12px;padding:8px 10px;outline:none" placeholder="React, Node.js, API"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Link (optional)</label><input id="np-link" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:12px;padding:8px 10px;outline:none" placeholder="https://github.com/..."></div>
+        <button onclick="addProject()" style="width:100%;background:rgba(232,200,78,0.12);color:#e8c84e;border:1px solid rgba(232,200,78,0.25);border-radius:8px;padding:10px;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:12px;font-weight:600;cursor:none;transition:all .2s">+ Add to projects</button>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">Add a job / experience</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Job title</label><input id="nj-role" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:12px;padding:8px 10px;outline:none" placeholder="e.g. Frontend Developer"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Company</label><input id="nj-company" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:12px;padding:8px 10px;outline:none" placeholder="e.g. Acme Corp · Sacramento, CA"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Dates</label><input id="nj-dates" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:12px;padding:8px 10px;outline:none" placeholder="e.g. Jan 2025 — Present"></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Key bullet points</label><textarea id="nj-bullets" rows="4" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:12px;padding:8px 10px;outline:none;resize:vertical" placeholder="One bullet per line..."></textarea></div>
+        <div><label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Tags (comma separated)</label><input id="nj-tags" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:12px;padding:8px 10px;outline:none" placeholder="React, QA, Python..."></div>
+        <button onclick="addJob()" style="width:100%;background:rgba(74,158,255,0.1);color:#4a9eff;border:1px solid rgba(74,158,255,0.22);border-radius:8px;padding:10px;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:12px;font-weight:600;cursor:none;transition:all .2s">+ Add to experience</button>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">Push to GitHub</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px">
+        <div>
+          <label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">GitHub username</label>
+          <input id="gh-user" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:12px;padding:8px 10px;outline:none" placeholder="yourusername">
+        </div>
+        <div>
+          <label style="display:block;font-size:11px;color:#86827c;margin-bottom:4px;font-weight:500">Personal access token <a href="https://github.com/settings/tokens/new?scopes=repo" target="_blank" style="color:#4a9eff;font-size:10px">get one ↗</a></label>
+          <input type="password" id="gh-token" style="width:100%;background:#1c1c1f;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:#ece8e1;font-family:&#39;Space Mono&#39;,monospace;font-size:11px;padding:8px 10px;outline:none" placeholder="ghp_xxxxxxxxxxxx">
+        </div>
+        <button onclick="pushToGitHub()" id="gh-push-btn" style="width:100%;background:rgba(74,158,255,0.12);color:#4a9eff;border:1px solid rgba(74,158,255,0.25);border-radius:8px;padding:11px;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:13px;font-weight:600;cursor:none;transition:all .2s">Push live to GitHub ↗</button>
+        <div id="gh-status" style="font-size:11px;text-align:center;min-height:16px;color:#86827c"></div>
+      </div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#45433f;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)">Or download</div>
+      <button onclick="exportSite()" style="width:100%;background:#e8c84e;color:#09090b;border:none;border-radius:8px;padding:12px;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:13px;font-weight:600;cursor:none;transition:background .2s">Download index.html</button>
+      <div style="margin-top:14px;background:#161618;border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:14px">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#45433f;margin-bottom:10px">To go live on GitHub</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <span style="font-family:&#39;Space Mono&#39;,monospace;font-size:10px;color:#e8c84e;flex-shrink:0;margin-top:1px">01</span>
+            <span style="font-size:11px;color:#86827c;line-height:1.5">Download the file above</span>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <span style="font-family:&#39;Space Mono&#39;,monospace;font-size:10px;color:#e8c84e;flex-shrink:0;margin-top:1px">02</span>
+            <span style="font-size:11px;color:#86827c;line-height:1.5">Go to your GitHub repo</span>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <span style="font-family:&#39;Space Mono&#39;,monospace;font-size:10px;color:#e8c84e;flex-shrink:0;margin-top:1px">03</span>
+            <span style="font-size:11px;color:#86827c;line-height:1.5">Click the existing <span style="color:#ece8e1;font-family:&#39;Space Mono&#39;,monospace">index.html</span> → pencil icon → select all → paste new file contents → Commit</span>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <span style="font-family:&#39;Space Mono&#39;,monospace;font-size:10px;color:#e8c84e;flex-shrink:0;margin-top:1px">04</span>
+            <span style="font-size:11px;color:#86827c;line-height:1.5">Site goes live in ~30 seconds</span>
+          </div>
+        </div>
+        <button onclick="copyFileContents()" style="width:100%;margin-top:12px;background:rgba(255,255,255,.04);color:#86827c;border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:9px;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:12px;font-weight:500;cursor:none;transition:all .2s" id="copy-html-btn">Copy all HTML to clipboard</button>
+        <p style="font-size:10px;color:#45433f;margin-top:8px;line-height:1.5;text-align:center">Paste directly into GitHub's editor — no file upload needed</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<button id="ed-btn" onclick="openEditor()" style="position:fixed;bottom:28px;right:28px;z-index:700;display:none;align-items:center;gap:8px;background:#e8c84e;color:#09090b;border:none;border-radius:99px;padding:11px 20px;font-family:&#39;Plus Jakarta Sans&#39;,sans-serif;font-size:13px;font-weight:600;cursor:none;box-shadow:0 4px 24px rgba(232,200,78,.3);transition:all .2s">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+  Edit site
+</button>
+
+
+
+</body></html>
